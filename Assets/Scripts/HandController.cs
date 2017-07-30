@@ -14,8 +14,6 @@ public class HandController : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		Debug.Log("Hit target " + other.gameObject.name);
-
 		NotifyHitTarget(other.gameObject);
 	}
 

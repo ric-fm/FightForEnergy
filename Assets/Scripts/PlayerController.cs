@@ -10,7 +10,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 	public float speed;
-	public int MaxEnergy;
+	public int minimumEnergyAmount;
 
 	Energy energy;
 	public HandController handController;
@@ -28,12 +28,6 @@ public class PlayerController : MonoBehaviour
 	bool shoot;
 
 	[SerializeField]
-	bool isTargetHit;
-
-	[SerializeField]
-	GameObject targetHit;
-
-	[SerializeField]
 	Energy targetHitEnergy;
 
 	// Use this for initialization
@@ -44,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
 		UpdateEnergyUI();
 
-		handController.OnHitTarget += HitTarget;
+		handController.OnHitTarget += SetTarget;
 	}
 
 	void EnergyChanged(Energy energy)
@@ -58,37 +52,43 @@ public class PlayerController : MonoBehaviour
 		UIManager.Instance.SetPlayerEnergy(energy.Amount, energy.MaxAmount);
 	}
 
-	void HitTarget(GameObject target)
+	void SetTarget(GameObject target)
 	{
-		targetHit = target;
 		targetHitEnergy = target.GetComponent<Energy>();
-		isTargetHit = true;
+
+		switch(targetHitEnergy.gameObject.tag)
+		{
+			case "Enemy":
+				targetHitEnergy.GetComponent<Enemy>().OnEnemyDestroyed += OnEnemyDestroyed;
+				break;
+
+			case "Machine":
+				targetHitEnergy.GetComponent<Machine>().OnMachineEnergyFilled += OnMachineEnergyFilled;
+				break;
+		}
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
+		// Comprobamos la entrada de usuario
+		//float hAxis = Input.GetAxis("Horizontal");
+		//float vAxis = Input.GetAxis("Vertical");
+		//bool shootButton = Input.GetButtonDown("Fire1");
 
-		float hAxis = Input.GetAxis("Horizontal");
-		float vAxis = Input.GetAxis("Vertical");
+		Aim();
 
-		bool shootButton = Input.GetButtonDown("Fire1");
+		HandleShootInput(Input.GetButtonDown("Fire1"));
 
-		if (!isTargetHit)
-		{
-			if (canShoot)
-			{
-				shoot = shootButton;
-			}
-		}
-		else
-		{
-			if(shoot)
-			{
-				isTargetHit = false;
-			}
-		}
+		Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
+		HandleEnergy();
+	}
+
+#region Player Mechanics
+	void Aim()
+	{
+		// Apuntado
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		Vector3 point = Vector3.zero;
 
@@ -104,44 +104,93 @@ public class PlayerController : MonoBehaviour
 
 			transform.forward = direction;
 		}
+	}
 
-		//point.y = transform.position.y;
-		//Vector3 direction = (transform.position - point).normalized;
-
-		//transform.forward = direction;
-
-		Vector3 movement = (Vector3.forward * hAxis + -Vector3.right * vAxis) * speed * Time.deltaTime;
-
-		transform.position += movement;
-
-		if (shoot)
+	void HandleShootInput(bool shootButton)
+	{
+		if (targetHitEnergy == null)
 		{
-			StartCoroutine(Shoot(transform.forward));
-		}
-
-		if (targetHitEnergy != null)
-		{
-			if (targetHitEnergy.CanSteal)
+			if (canShoot)
 			{
-				int stealedEnergy = targetHitEnergy.Steal(1);
-				Debug.Log("Stealing " + stealedEnergy + " energy from " + targetHitEnergy.gameObject.name);
-
-				int receivedEnergy = energy.Receive(stealedEnergy);
-
-				Debug.Log("Receiving " + receivedEnergy);
-			}
-			else
-			{
-				//Debug.Log("Cant steal energy from " + targetHitEnergy.gameObject.name);
+				shoot = shootButton;
 			}
 		}
 		else
 		{
-			isTargetHit = false;
+			if (shootButton)
+			{
+				ClearTargetHit();
+			}
+		}
+
+		if (shoot)
+		{
+			StartCoroutine(ShootAnimation(transform.forward));
 		}
 	}
 
-	IEnumerator Shoot(Vector3 direction)
+	void Move(float hMove, float vMove)
+	{
+		Vector3 movement = (Vector3.forward * hMove + -Vector3.right * vMove) * speed * Time.deltaTime;
+
+		transform.position += movement;
+	}
+
+	void HandleEnergy()
+	{
+		if (targetHitEnergy != null)
+		{
+			switch (targetHitEnergy.gameObject.tag)
+			{
+				case "Enemy":
+					StealEnergyTarget();
+					break;
+
+				case "Machine":
+					SendEnergyTarget();
+					break;
+			}
+		}
+	}
+
+	void StealEnergyTarget()
+	{
+		if (targetHitEnergy.CanSteal)
+		{
+			int stealedEnergy = targetHitEnergy.Steal(1);
+
+			int receivedEnergy = energy.Receive(stealedEnergy);
+		}
+		else
+		{
+			//Debug.Log("Cant steal energy from " + targetHitEnergy.gameObject.name);
+		}
+	}
+
+	void SendEnergyTarget()
+	{
+		if (energy.Amount > minimumEnergyAmount)
+		{
+
+			if (targetHitEnergy.CanReceive)
+			{
+				int sentEnergy = targetHitEnergy.Receive(1);
+
+				energy.Amount -= sentEnergy;
+			}
+			else
+			{
+				//Debug.Log("Cant steal energy from " + targetHitEnergy.gameObject.name);
+
+			}
+		}
+		else
+		{
+			ClearTargetHit();
+		}
+	}
+
+	IEnumerator ShootAnimation(Vector3 direction)
 	{
 		shoot = false;
 		canShoot = false;
@@ -152,7 +201,7 @@ public class PlayerController : MonoBehaviour
 
 		shootGO.transform.SetParent(null);
 
-		while (!isTargetHit)
+		while (targetHitEnergy == null)
 		{
 			shootGO.transform.position = Vector3.Lerp(shootGO.transform.position, shootTargetPoint, shootSpeed * Time.deltaTime);
 
@@ -167,12 +216,21 @@ public class PlayerController : MonoBehaviour
 
 		do
 		{
-			Debug.Log("waiting");
 
 			yield return new WaitForSeconds(shootBackInterval);
 		}
-		while (isTargetHit);
+		while (targetHitEnergy != null);
 
+		OnShootAnimationCompleted();
+	}
+
+	void OnShootAnimationCompleted()
+	{
+		StartCoroutine(HandBackAnimation());
+	}
+
+	IEnumerator HandBackAnimation()
+	{
 		shootGO.transform.SetParent(handPoint.transform);
 
 		Debug.Log("back");
@@ -192,7 +250,26 @@ public class PlayerController : MonoBehaviour
 
 		shootGO.transform.localPosition = Vector3.zero;
 
-		isTargetHit = false;
+		ClearTargetHit();
 		canShoot = true;
 	}
+	#endregion
+	
+
+	void OnMachineEnergyFilled(Machine machine)
+	{
+		ClearTargetHit();
+	}
+
+	void OnEnemyDestroyed(Enemy enemy)
+	{
+		ClearTargetHit();
+	}
+
+	void ClearTargetHit()
+	{
+		targetHitEnergy = null;
+	}
+
+	
 }

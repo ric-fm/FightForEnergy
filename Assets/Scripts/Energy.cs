@@ -11,7 +11,26 @@ public class Energy : MonoBehaviour
 {
 	public delegate void EnergyEvent(Energy energy);
 
-	public int Amount;
+	[SerializeField]
+	int amount;
+
+	public int Amount
+	{
+		get
+		{
+			return amount;
+		}
+		set
+		{
+			int previousAmount = amount;
+			amount = value;
+
+			if (previousAmount != value)
+			{
+				NotifyEnergyChanged();
+			}
+		}
+	}
 	public int MaxAmount;
 
 	public bool CanSteal = true;
@@ -39,15 +58,13 @@ public class Energy : MonoBehaviour
 		}
 		Amount -= stealedAmount;
 
-		if (stealedAmount != 0)
-		{
-			NotifyEnergyChanged();
-		}
+		//if (stealedAmount != 0)
+		//{
+		//	NotifyEnergyChanged();
+		//}
 
-		if (stealCoolDown != 0)
-		{
-			StartCoroutine(StealCoolDown());
-		}
+		StartCoroutine(StealCoolDown());
+
 		return stealedAmount;
 	}
 
@@ -70,15 +87,12 @@ public class Energy : MonoBehaviour
 			Amount += receivedAmount;
 		}
 
-		if (receivedAmount != 0)
-		{
-			NotifyEnergyChanged();
-		}
-
-		//if (receiveCoolDown != 0)
+		//if (receivedAmount != 0)
 		//{
-		//	StartCoroutine(ReceiveCoolDown());
+		//	NotifyEnergyChanged();
 		//}
+
+		StartCoroutine(ReceiveCoolDown());
 
 		return receivedAmount;
 	}
