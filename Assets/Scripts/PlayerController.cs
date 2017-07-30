@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
 
 	public GameObject shootGO;
 	public GameObject handPoint;
+	public GameObject hand;
+	Transform handParentTransform;
 	public float shootSpeed;
 	public float shootRange;
 	public float shootCheckDistance;
@@ -41,7 +43,6 @@ public class PlayerController : MonoBehaviour
 	SpawnMachine spawnMachine;
 
 	Animator anim;
-
 
 	private void Awake()
 	{
@@ -61,6 +62,7 @@ public class PlayerController : MonoBehaviour
 		spawnMachine = GetComponent<SpawnMachine>();
 		spawnMachine.OnMachineSpawned += OnMachineSpawned;
 
+		handParentTransform = hand.transform.parent;
 	}
 
 	void EnergyChanged(Energy energy)
@@ -76,17 +78,24 @@ public class PlayerController : MonoBehaviour
 
 	void SetTarget(GameObject target)
 	{
-		targetHitEnergy = target.GetComponent<Energy>();
-
-		switch(targetHitEnergy.gameObject.tag)
+		if (shooting)
 		{
-			case "Enemy":
-				targetHitEnergy.GetComponent<Enemy>().OnEnemyDestroyed += OnEnemyDestroyed;
-				break;
+			targetHitEnergy = target.GetComponent<Energy>();
 
-			case "Machine":
-				targetHitEnergy.GetComponent<Machine>().OnMachineEnergyFilled += OnMachineEnergyFilled;
-				break;
+			//handController.transform.SetParent(target.transform);
+			//shootGO.transform.SetParent(target.transform);
+
+
+			switch (targetHitEnergy.gameObject.tag)
+			{
+				case "Enemy":
+					targetHitEnergy.GetComponent<Enemy>().OnEnemyDestroyed += OnEnemyDestroyed;
+					break;
+
+				case "Machine":
+					targetHitEnergy.GetComponent<Machine>().OnMachineEnergyFilled += OnMachineEnergyFilled;
+					break;
+			}
 		}
 	}
 
@@ -98,19 +107,19 @@ public class PlayerController : MonoBehaviour
 		float vAxis = Input.GetAxis("Vertical");
 		//bool shootButton = Input.GetButtonDown("Fire1");
 
-		if(Input.GetKeyDown(KeyCode.E))
+		if (Input.GetKeyDown(KeyCode.E))
 		{
 			CurrentState = PlayerState.SPAWNING;
 		}
 
 		Move(hAxis, vAxis);
 
-		Vector2 speed = new Vector2(hAxis, vAxis);
-		anim.SetFloat("Speed", speed.magnitude);
+		Vector2 move = new Vector2(hAxis, vAxis);
+		anim.SetFloat("Speed", move.magnitude);
 
 		Aim();
 
-		switch(CurrentState)
+		switch (CurrentState)
 		{
 			case PlayerState.FIGHTING:
 				spawnMachine.enabled = false;
@@ -125,10 +134,10 @@ public class PlayerController : MonoBehaviour
 
 				break;
 		}
-		
+
 	}
 
-#region Player Mechanics
+	#region Player Mechanics
 	void Aim()
 	{
 		// Apuntado
@@ -144,7 +153,7 @@ public class PlayerController : MonoBehaviour
 			point.y = transform.position.y;
 			Vector3 direction = (transform.position - point).normalized;
 
-			transform.right = direction;
+			transform.forward = -direction;
 		}
 	}
 
@@ -232,20 +241,48 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	bool shooting;
+	private void LateUpdate()
+	{
+		if (shooting)
+		{
+			if (targetHitEnergy != null)
+			{
+				shootGO.transform.position = targetHitEnergy.transform.position;
+				hand.transform.localPosition = Vector3.zero;
+
+				Vector3 targetDirection = (hand.transform.position - targetHitEnergy.transform.position).normalized;
+				hand.transform.right = -targetDirection;
+
+			}
+			else
+			{
+				hand.transform.localPosition = Vector3.zero;
+				hand.transform.right = -shootDirection;
+			}
+		}
+	}
+
 	IEnumerator ShootAnimation(Vector3 direction)
 	{
 		shoot = false;
+		shooting = true;
 		canShoot = false;
 
 		shootDirection = direction;
+		Debug.Log("direction " + shootDirection);
 		shootInitialPoint = transform.position;
-		shootTargetPoint = transform.position + -shootDirection * shootRange * Time.deltaTime;
+		shootTargetPoint = transform.position + shootDirection * shootRange * Time.deltaTime;
+		shootTargetPoint.y = handPoint.transform.position.y;
 
 		shootGO.transform.SetParent(null);
+		hand.transform.SetParent(shootGO.transform);
+
 
 		while (targetHitEnergy == null)
 		{
 			shootGO.transform.position = Vector3.Lerp(shootGO.transform.position, shootTargetPoint, shootSpeed * Time.deltaTime);
+			//Debug.Log("target " + shootTargetPoint);
 
 			float dist = Vector3.Distance(shootGO.transform.position, shootTargetPoint);
 
@@ -273,9 +310,7 @@ public class PlayerController : MonoBehaviour
 
 	IEnumerator HandBackAnimation()
 	{
-		shootGO.transform.SetParent(handPoint.transform);
-
-		Debug.Log("back");
+		shootGO.transform.SetParent(transform);
 
 		while (true)
 		{
@@ -294,9 +329,11 @@ public class PlayerController : MonoBehaviour
 
 		ClearTargetHit();
 		canShoot = true;
+		shooting = false;
+		hand.transform.SetParent(handParentTransform);
 	}
 	#endregion
-	
+
 
 	void OnMachineEnergyFilled(Machine machine)
 	{
@@ -318,5 +355,5 @@ public class PlayerController : MonoBehaviour
 		CurrentState = PlayerState.FIGHTING;
 	}
 
-	
+
 }
