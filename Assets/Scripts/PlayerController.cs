@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
 
 	public GameObject shootGO;
 	public GameObject handPoint;
+	public GameObject hand;
+	Transform handParentTransform;
 	public float shootSpeed;
 	public float shootRange;
 	public float shootCheckDistance;
@@ -41,7 +43,6 @@ public class PlayerController : MonoBehaviour
 	SpawnMachine spawnMachine;
 
 	Animator anim;
-
 
 	private void Awake()
 	{
@@ -61,6 +62,7 @@ public class PlayerController : MonoBehaviour
 		spawnMachine = GetComponent<SpawnMachine>();
 		spawnMachine.OnMachineSpawned += OnMachineSpawned;
 
+		handParentTransform = hand.transform.parent;
 	}
 
 	void EnergyChanged(Energy energy)
@@ -77,6 +79,8 @@ public class PlayerController : MonoBehaviour
 	void SetTarget(GameObject target)
 	{
 		targetHitEnergy = target.GetComponent<Energy>();
+
+		//handController.transform.SetParent(target.transform);
 
 		switch(targetHitEnergy.gameObject.tag)
 		{
@@ -105,8 +109,8 @@ public class PlayerController : MonoBehaviour
 
 		Move(hAxis, vAxis);
 
-		Vector2 speed = new Vector2(hAxis, vAxis);
-		anim.SetFloat("Speed", speed.magnitude);
+		Vector2 move = new Vector2(hAxis, vAxis);
+		anim.SetFloat("Speed", move.magnitude);
 
 		Aim();
 
@@ -144,7 +148,7 @@ public class PlayerController : MonoBehaviour
 			point.y = transform.position.y;
 			Vector3 direction = (transform.position - point).normalized;
 
-			transform.right = direction;
+			transform.forward = direction;
 		}
 	}
 
@@ -232,20 +236,36 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	bool shooting;
+	private void LateUpdate()
+	{
+		if(shooting)
+		{
+			hand.transform.localPosition = Vector3.zero;
+			hand.transform.right = shootDirection;
+		}
+	}
+
 	IEnumerator ShootAnimation(Vector3 direction)
 	{
 		shoot = false;
+		shooting = true;
 		canShoot = false;
 
 		shootDirection = direction;
+		Debug.Log("direction " + shootDirection);
 		shootInitialPoint = transform.position;
 		shootTargetPoint = transform.position + -shootDirection * shootRange * Time.deltaTime;
+		shootTargetPoint.y = handPoint.transform.position.y;
 
 		shootGO.transform.SetParent(null);
+		hand.transform.SetParent(shootGO.transform);
+		
 
 		while (targetHitEnergy == null)
 		{
 			shootGO.transform.position = Vector3.Lerp(shootGO.transform.position, shootTargetPoint, shootSpeed * Time.deltaTime);
+			//Debug.Log("target " + shootTargetPoint);
 
 			float dist = Vector3.Distance(shootGO.transform.position, shootTargetPoint);
 
@@ -275,8 +295,6 @@ public class PlayerController : MonoBehaviour
 	{
 		shootGO.transform.SetParent(handPoint.transform);
 
-		Debug.Log("back");
-
 		while (true)
 		{
 			shootGO.transform.localPosition = Vector3.Lerp(shootGO.transform.localPosition, Vector3.zero, shootSpeed * Time.deltaTime);
@@ -294,6 +312,8 @@ public class PlayerController : MonoBehaviour
 
 		ClearTargetHit();
 		canShoot = true;
+		shooting = false;
+		hand.transform.SetParent(handParentTransform);
 	}
 	#endregion
 	
