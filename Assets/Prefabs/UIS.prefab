@@ -482,6 +482,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a6d4a2dc4d188418213115979a130f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 1
+  value: 2
+  energyCost: 1
+  coolDownInterval: 1
 --- !u!114 &114533311445802226
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -493,6 +497,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a6d4a2dc4d188418213115979a130f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 4
+  value: 0
+  energyCost: 5
+  coolDownInterval: 1
 --- !u!114 &114712632814431698
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -504,6 +512,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a6d4a2dc4d188418213115979a130f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 2
+  value: 0.5
+  energyCost: 1
+  coolDownInterval: 1
 --- !u!114 &114770681367215616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -515,6 +527,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a6d4a2dc4d188418213115979a130f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 5
+  value: 0
+  energyCost: 3
+  coolDownInterval: 1
 --- !u!114 &114843799948878294
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -526,6 +542,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a6d4a2dc4d188418213115979a130f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 3
+  value: 800
+  energyCost: 1
+  coolDownInterval: 1
 --- !u!114 &114938116545281908
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -537,6 +557,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a6d4a2dc4d188418213115979a130f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
+  value: 10
+  energyCost: 1
+  coolDownInterval: 1
 --- !u!136 &136020244111363164
 CapsuleCollider:
   m_ObjectHideFlags: 1

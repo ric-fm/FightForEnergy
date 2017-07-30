@@ -68,6 +68,26 @@ public class Energy : MonoBehaviour
 		return stealedAmount;
 	}
 
+	public int Steal(int amount, float speedMultiplier)
+	{
+		stealCoolDown = speedMultiplier;
+		int stealedAmount = Amount;
+		if (amount <= Amount)
+		{
+			stealedAmount = amount;
+		}
+		Amount -= stealedAmount;
+
+		//if (stealedAmount != 0)
+		//{
+		//	NotifyEnergyChanged();
+		//}
+
+		StartCoroutine(StealCoolDown());
+
+		return stealedAmount;
+	}
+
 	IEnumerator StealCoolDown()
 	{
 		CanSteal = false;

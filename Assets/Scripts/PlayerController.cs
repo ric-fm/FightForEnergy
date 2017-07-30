@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
 
 	SpawnMachine spawnMachine;
 
+	Rigidbody rb;
 	Animator anim;
 
 	public PlayerStats DefaultStats;
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour
 
 	private void Awake()
 	{
+		rb = GetComponent<Rigidbody>();
 		anim = GetComponent<Animator>();
 	}
 
@@ -274,9 +276,13 @@ public class PlayerController : MonoBehaviour
 
 	void Move(float hMove, float vMove)
 	{
-		Vector3 movement = (Vector3.forward * hMove + -Vector3.right * vMove) * speed * Time.deltaTime;
+		//Vector3 movement = (Vector3.forward * hMove + -Vector3.right * vMove) * speed * Time.deltaTime;
+		Vector3 movement = (Vector3.forward * hMove + -Vector3.right * vMove);
 
-		transform.position += movement;
+		//transform.position += movement;
+
+		rb.velocity = movement;
+		rb.velocity = movement.normalized * speed * Time.deltaTime;
 	}
 
 	void HandleEnergy()
@@ -300,7 +306,8 @@ public class PlayerController : MonoBehaviour
 	{
 		if (targetHitEnergy.CanSteal)
 		{
-			int stealedEnergy = targetHitEnergy.Steal(1);
+			//int stealedEnergy = targetHitEnergy.Steal(1);
+			int stealedEnergy = targetHitEnergy.Steal(1, CurrentStats.StealSpeed);
 
 			int receivedEnergy = energy.Receive(stealedEnergy);
 		}
@@ -317,7 +324,7 @@ public class PlayerController : MonoBehaviour
 
 			if (targetHitEnergy.CanReceive)
 			{
-				int sentEnergy = targetHitEnergy.Receive(1);
+				int sentEnergy = targetHitEnergy.Receive((int)CurrentStats.ChargeMultiplier);
 
 				energy.Amount -= sentEnergy;
 			}
