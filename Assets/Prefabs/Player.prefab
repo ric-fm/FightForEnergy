@@ -74,17 +74,13 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1482914127007638
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4867126657677056}
-  - component: {fileID: 33986449106066654}
-  - component: {fileID: 135794785756661490}
-  - component: {fileID: 23955057559947408}
   - component: {fileID: 54243534180129622}
-  - component: {fileID: 114413224066062978}
   m_Layer: 12
   m_Name: HandShootGO
   m_TagString: Untagged
@@ -130,7 +126,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4769546083775330}
-  m_Layer: 0
+  - component: {fileID: 135252444771602266}
+  - component: {fileID: 114619295952855034}
+  m_Layer: 12
   m_Name: Hand_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -414,6 +412,7 @@ Transform:
   - {fileID: 4672257972940718}
   - {fileID: 4583074183933518}
   - {fileID: 4595337707464732}
+  - {fileID: 4867126657677056}
   - {fileID: 4846144766344264}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -425,12 +424,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1510537060046864}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.64, y: 3.51, z: 2.34}
+  m_LocalPosition: {x: -0.306, y: 3.62, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4867126657677056}
+  m_Children: []
   m_Father: {fileID: 4789446589670266}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4867126657677056
 Transform:
@@ -439,11 +437,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1482914127007638}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.12, y: -1.22, z: 0.77}
+  m_LocalPosition: {x: 0.52, y: 3.34, z: 2.77}
   m_LocalScale: {x: 1.9559517, y: 1.955952, z: 1.955952}
   m_Children: []
-  m_Father: {fileID: 4846144766344264}
-  m_RootOrder: 0
+  m_Father: {fileID: 4789446589670266}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4991130973073880
 Transform:
@@ -458,45 +456,6 @@ Transform:
   m_Father: {fileID: 4789446589670266}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23955057559947408
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1482914127007638}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &33986449106066654
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1482914127007638}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!54 &54243534180129622
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -556,17 +515,6 @@ MonoBehaviour:
     _serializedMetaDocument: <meta></meta>
     _serializedObjects: []
     _serializedCustomData: []
---- !u!114 &114413224066062978
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1482914127007638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79c11f8e36ff3b141a5972fd482d42e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114613737309191886
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -584,6 +532,17 @@ MonoBehaviour:
   CanReceive: 1
   stealCoolDown: 0
   receiveCoolDown: 0
+--- !u!114 &114619295952855034
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1571567110474420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c11f8e36ff3b141a5972fd482d42e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114690488016235186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -641,7 +600,7 @@ MonoBehaviour:
   CurrentState: 0
   speed: 10
   minimumEnergyAmount: 1
-  handController: {fileID: 114413224066062978}
+  handController: {fileID: 114619295952855034}
   shootGO: {fileID: 1482914127007638}
   handPoint: {fileID: 1510537060046864}
   hand: {fileID: 1571567110474420}
@@ -650,12 +609,12 @@ MonoBehaviour:
   shootCheckDistance: 0.5
   shootBackInterval: 0.2
   targetHitEnergy: {fileID: 0}
---- !u!135 &135794785756661490
+--- !u!135 &135252444771602266
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1482914127007638}
+  m_GameObject: {fileID: 1571567110474420}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
@@ -688,7 +647,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: aa1df6dfc42590c4fa7794ae5ed0439d, type: 2}
+  - {fileID: 2100000, guid: 64e2a18b559513448be272cfa9b5fb18, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
