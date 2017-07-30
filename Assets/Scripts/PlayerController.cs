@@ -47,6 +47,9 @@ public class PlayerController : MonoBehaviour
 
 	public PlayerStats CurrentStats;
 
+	public GameObject baitMachineTemplate;
+	public GameObject turretMachineTemplate;
+
 
 	private void Awake()
 	{
@@ -100,11 +103,19 @@ public class PlayerController : MonoBehaviour
 			case BaseMachineUI.UpgradeType.BAIT:
 				Debug.Log("Spawn bait");
 
+				spawnMachine.machineTemplate = baitMachineTemplate;
+
+				CurrentState = PlayerState.SPAWNING;
+
 				statsUpdated = false;
 				break;
 
 			case BaseMachineUI.UpgradeType.TURRET:
 				Debug.Log("Spawn turret");
+				spawnMachine.machineTemplate = turretMachineTemplate;
+
+				CurrentState = PlayerState.SPAWNING;
+
 
 				statsUpdated = false;
 				break;
@@ -347,15 +358,23 @@ public class PlayerController : MonoBehaviour
 	IEnumerator ShootAnimation(Vector3 direction)
 	{
 		shoot = false;
-		shooting = true;
 		canShoot = false;
+
+		
+
+		anim.SetTrigger("Shoot");
+
+		yield return new WaitForSeconds(0.2f);
+		shooting = true;
 
 		shootDirection = direction;
 		shootTargetPoint = handPoint.transform.position + shootDirection * CurrentStats.Range * Time.deltaTime;
 		shootTargetPoint.y = handPoint.transform.position.y;
 
 		shootGO.transform.SetParent(null);
+		shootGO.transform.position = handPoint.transform.position;
 		hand.transform.SetParent(shootGO.transform);
+
 
 
 		while (targetHitEnergy == null)
