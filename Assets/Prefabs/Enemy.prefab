@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 136790488881088482}
   - component: {fileID: 114478754578486164}
   - component: {fileID: 114599985879045120}
+  - component: {fileID: 54877172946011056}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Enemy
@@ -366,6 +367,21 @@ Transform:
   m_Father: {fileID: 4703078043513726}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &54877172946011056
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1123933613299760}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
 --- !u!95 &95490027623052814
 Animator:
   serializedVersion: 3
@@ -394,12 +410,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb46fc665a0a0d74d919961e0733367f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 0
+  amount: 10
   MaxAmount: 10
   CanSteal: 1
   CanReceive: 1
   stealCoolDown: 1
-  receiveCoolDown: 1
+  receiveCoolDown: 0
 --- !u!114 &114599985879045120
 MonoBehaviour:
   m_ObjectHideFlags: 1
