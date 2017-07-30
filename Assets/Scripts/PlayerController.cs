@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
 	public GameObject hand;
 	Transform handParentTransform;
 	public float shootSpeed;
-	public float shootRange;
 	public float shootCheckDistance;
 	public float shootBackInterval;
 	Vector3 shootDirection;
@@ -43,6 +42,11 @@ public class PlayerController : MonoBehaviour
 	SpawnMachine spawnMachine;
 
 	Animator anim;
+
+	public PlayerStats DefaultStats;
+
+	public PlayerStats CurrentStats;
+
 
 	private void Awake()
 	{
@@ -63,6 +67,69 @@ public class PlayerController : MonoBehaviour
 		spawnMachine.OnMachineSpawned += OnMachineSpawned;
 
 		handParentTransform = hand.transform.parent;
+
+		CurrentStats = DefaultStats;
+	}
+
+	public bool CanSpendEnergy(int cost)
+	{
+		return energy.Amount - minimumEnergyAmount >= cost;
+	}
+
+	public void UpgradeStat(BaseMachineUI.UpgradeType upgradeType, float newValue, int cost)
+	{
+		bool statsUpdated = true;
+		switch (upgradeType)
+		{
+			case BaseMachineUI.UpgradeType.CAPACITY:
+				CurrentStats.ChargeCapacity = newValue;
+				break;
+
+			case BaseMachineUI.UpgradeType.MULTIPLIER:
+				CurrentStats.ChargeMultiplier = newValue;
+				break;
+
+			case BaseMachineUI.UpgradeType.RANGE:
+				CurrentStats.Range = newValue;
+				break;
+
+			case BaseMachineUI.UpgradeType.SPEED:
+				CurrentStats.StealSpeed = newValue;
+				break;
+
+			case BaseMachineUI.UpgradeType.BAIT:
+				Debug.Log("Spawn bait");
+
+				statsUpdated = false;
+				break;
+
+			case BaseMachineUI.UpgradeType.TURRET:
+				Debug.Log("Spawn turret");
+
+				statsUpdated = false;
+				break;
+		}
+		energy.Amount -= cost;
+		
+
+		if (statsUpdated)
+		{
+			OnStatsUpdated();
+		}
+	}
+
+	void OnStatsUpdated()
+	{
+		energy.MaxAmount = (int)CurrentStats.ChargeCapacity;
+		UpdateEnergyUI();
+		Debug.Log("Stats updated");
+	}
+
+	void ShowStats()
+	{
+		Debug.Log("Stats: " + CurrentStats);
+
+
 	}
 
 	void EnergyChanged(Energy energy)
@@ -85,16 +152,19 @@ public class PlayerController : MonoBehaviour
 			//handController.transform.SetParent(target.transform);
 			//shootGO.transform.SetParent(target.transform);
 
-
-			switch (targetHitEnergy.gameObject.tag)
+			if (targetHitEnergy != null)
 			{
-				case "Enemy":
-					targetHitEnergy.GetComponent<Enemy>().OnEnemyDestroyed += OnEnemyDestroyed;
-					break;
 
-				case "Machine":
-					targetHitEnergy.GetComponent<Machine>().OnMachineEnergyFilled += OnMachineEnergyFilled;
-					break;
+				switch (targetHitEnergy.gameObject.tag)
+				{
+					case "Enemy":
+						targetHitEnergy.GetComponent<Enemy>().OnEnemyDestroyed += OnEnemyDestroyed;
+						break;
+
+					case "Machine":
+						targetHitEnergy.GetComponent<Machine>().OnMachineEnergyFilled += OnMachineEnergyFilled;
+						break;
+				}
 			}
 		}
 	}
@@ -137,6 +207,8 @@ public class PlayerController : MonoBehaviour
 
 	}
 
+	bool aimToGround;
+
 	#region Player Mechanics
 	void Aim()
 	{
@@ -146,8 +218,13 @@ public class PlayerController : MonoBehaviour
 
 		RaycastHit hit;
 
-		if (Physics.Raycast(ray, out hit, 10000, 1 << LayerMask.NameToLayer("Ground")))
+		if (Physics.Raycast(ray, out hit, 10000, 1 << LayerMask.NameToLayer("3DUI")))
 		{
+			aimToGround = false;
+		}
+		else if (Physics.Raycast(ray, out hit, 10000, 1 << LayerMask.NameToLayer("Ground")))
+		{
+			aimToGround = true;
 			point = hit.point;
 
 			point.y = transform.position.y;
@@ -159,6 +236,10 @@ public class PlayerController : MonoBehaviour
 
 	void HandleShoot(bool shootButton)
 	{
+		if(!aimToGround)
+		{
+			return;
+		}
 		if (targetHitEnergy == null)
 		{
 			if (canShoot)
@@ -270,9 +351,7 @@ public class PlayerController : MonoBehaviour
 		canShoot = false;
 
 		shootDirection = direction;
-		Debug.Log("direction " + shootDirection);
-		shootInitialPoint = transform.position;
-		shootTargetPoint = transform.position + shootDirection * shootRange * Time.deltaTime;
+		shootTargetPoint = handPoint.transform.position + shootDirection * CurrentStats.Range * Time.deltaTime;
 		shootTargetPoint.y = handPoint.transform.position.y;
 
 		shootGO.transform.SetParent(null);

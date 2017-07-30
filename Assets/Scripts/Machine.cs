@@ -14,7 +14,7 @@ public class Machine : MonoBehaviour
 
 	public event MachineEvent OnMachineEnergyFilled;
 
-	void Start () {
+	protected virtual void Start () {
 		energy = GetComponent<Energy>();
 		energy.OnEnergyChanged += OnEnergyChanged;
 	}
