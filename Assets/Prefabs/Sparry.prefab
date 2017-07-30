@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 136688066598798820}
   - component: {fileID: 23452348001795584}
   - component: {fileID: 114165620637096318}
-  - component: {fileID: 114514043067286664}
+  - component: {fileID: 114661360796685464}
   m_Layer: 9
   m_Name: Sparry
   m_TagString: Enemy
@@ -94,13 +94,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb46fc665a0a0d74d919961e0733367f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Amount: 3
+  amount: 3
   MaxAmount: 0
   CanSteal: 1
   CanReceive: 1
   stealCoolDown: 1
   receiveCoolDown: 0
---- !u!114 &114514043067286664
+--- !u!114 &114661360796685464
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1461904933816042}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99de84e376a93a348918e70a0d1b14e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a91a99d902e6324ab7aceac283dc5a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!136 &136688066598798820
