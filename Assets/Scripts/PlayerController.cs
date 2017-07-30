@@ -9,6 +9,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+	public enum PlayerState
+	{
+		FIGHTING,
+		SPAWNING
+	}
+
+	public PlayerState CurrentState;
+
 	public float speed;
 	public int minimumEnergyAmount;
 
@@ -30,6 +38,8 @@ public class PlayerController : MonoBehaviour
 	[SerializeField]
 	Energy targetHitEnergy;
 
+	SpawnMachine spawnMachine;
+
 	// Use this for initialization
 	void Start()
 	{
@@ -39,6 +49,9 @@ public class PlayerController : MonoBehaviour
 		UpdateEnergyUI();
 
 		handController.OnHitTarget += SetTarget;
+
+		spawnMachine = GetComponent<SpawnMachine>();
+		spawnMachine.OnMachineSpawned += OnMachineSpawned;
 	}
 
 	void EnergyChanged(Energy energy)
@@ -76,13 +89,31 @@ public class PlayerController : MonoBehaviour
 		//float vAxis = Input.GetAxis("Vertical");
 		//bool shootButton = Input.GetButtonDown("Fire1");
 
-		Aim();
-
-		HandleShootInput(Input.GetButtonDown("Fire1"));
+		if(Input.GetKeyDown(KeyCode.E))
+		{
+			CurrentState = PlayerState.SPAWNING;
+		}
 
 		Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-		HandleEnergy();
+		Aim();
+
+		switch(CurrentState)
+		{
+			case PlayerState.FIGHTING:
+				spawnMachine.enabled = false;
+
+				HandleShoot(Input.GetButtonDown("Fire1"));
+				HandleEnergy();
+
+				break;
+
+			case PlayerState.SPAWNING:
+				spawnMachine.enabled = true;
+
+				break;
+		}
+		
 	}
 
 #region Player Mechanics
@@ -91,7 +122,6 @@ public class PlayerController : MonoBehaviour
 		// Apuntado
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		Vector3 point = Vector3.zero;
-
 
 		RaycastHit hit;
 
@@ -106,7 +136,7 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	void HandleShootInput(bool shootButton)
+	void HandleShoot(bool shootButton)
 	{
 		if (targetHitEnergy == null)
 		{
@@ -269,6 +299,11 @@ public class PlayerController : MonoBehaviour
 	void ClearTargetHit()
 	{
 		targetHitEnergy = null;
+	}
+
+	void OnMachineSpawned(Machine machine)
+	{
+		CurrentState = PlayerState.FIGHTING;
 	}
 
 	
