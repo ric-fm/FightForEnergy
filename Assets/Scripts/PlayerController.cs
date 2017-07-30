@@ -40,6 +40,14 @@ public class PlayerController : MonoBehaviour
 
 	SpawnMachine spawnMachine;
 
+	Animator anim;
+
+
+	private void Awake()
+	{
+		anim = GetComponent<Animator>();
+	}
+
 	// Use this for initialization
 	void Start()
 	{
@@ -52,6 +60,7 @@ public class PlayerController : MonoBehaviour
 
 		spawnMachine = GetComponent<SpawnMachine>();
 		spawnMachine.OnMachineSpawned += OnMachineSpawned;
+
 	}
 
 	void EnergyChanged(Energy energy)
@@ -85,8 +94,8 @@ public class PlayerController : MonoBehaviour
 	void Update()
 	{
 		// Comprobamos la entrada de usuario
-		//float hAxis = Input.GetAxis("Horizontal");
-		//float vAxis = Input.GetAxis("Vertical");
+		float hAxis = Input.GetAxis("Horizontal");
+		float vAxis = Input.GetAxis("Vertical");
 		//bool shootButton = Input.GetButtonDown("Fire1");
 
 		if(Input.GetKeyDown(KeyCode.E))
@@ -94,7 +103,10 @@ public class PlayerController : MonoBehaviour
 			CurrentState = PlayerState.SPAWNING;
 		}
 
-		Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+		Move(hAxis, vAxis);
+
+		Vector2 speed = new Vector2(hAxis, vAxis);
+		anim.SetFloat("Speed", speed.magnitude);
 
 		Aim();
 
@@ -132,7 +144,7 @@ public class PlayerController : MonoBehaviour
 			point.y = transform.position.y;
 			Vector3 direction = (transform.position - point).normalized;
 
-			transform.forward = direction;
+			transform.right = direction;
 		}
 	}
 
