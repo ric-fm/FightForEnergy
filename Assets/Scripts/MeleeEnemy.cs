@@ -14,6 +14,9 @@ public class MeleeEnemy : Enemy
 
 	GameObject currentTarget;
 
+	public AudioClip PlayerHitSound;
+	public AudioClip MachineHitSound;
+
 	protected override void Start()
 	{
 		base.Start();
@@ -27,16 +30,28 @@ public class MeleeEnemy : Enemy
 
 		if (currentTarget != null)
 		{
-
+			
+			StealEnergy(currentTarget);
 		}
-		StealEnergy(currentTarget);
 	}
 
 	void StealEnergy(GameObject target)
 	{
 		Energy energy = target.GetComponent<Energy>();
 
-		energy.Steal(damage, 1);
+		if(energy.CanSteal)
+		{
+			if (target.tag == "Player")
+			{
+				SoundManager.Instance.PlaySingleAtLocation(PlayerHitSound, currentTarget.transform.position);
+			}
+			else
+			{
+				SoundManager.Instance.PlaySingleAtLocation(MachineHitSound, currentTarget.transform.position);
+			}
+
+			energy.Steal(damage, 1);
+		}
 	}
 
 	private void LateUpdate()
