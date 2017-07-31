@@ -23,7 +23,7 @@ public class Missile : MonoBehaviour
 		this.direction = direction;
 		this.speed = speed;
 
-		rb.velocity = -direction * speed * Time.deltaTime;
+		rb.velocity = direction * speed * Time.deltaTime;
 	}
 
 	private void OnCollisionEnter(Collision collision)

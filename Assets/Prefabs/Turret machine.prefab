@@ -60,6 +60,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1659392932075626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4284477843595558}
+  - component: {fileID: 114126935049928236}
+  m_Layer: 0
+  m_Name: AI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1708475379834350
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,6 +103,7 @@ GameObject:
   - component: {fileID: 95839278651042334}
   - component: {fileID: 114502604847672512}
   - component: {fileID: 114887685073434240}
+  - component: {fileID: 114409997537251118}
   m_Layer: 10
   m_Name: Turret machine
   m_TagString: Machine
@@ -100,15 +117,29 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1948805390965722}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.550119, y: 0.05087317, z: 18.425087}
+  m_LocalRotation: {x: -0, y: -0.99432814, z: -0, w: -0.10635564}
+  m_LocalPosition: {x: -5.206215, y: 0.05087328, z: 24.558943}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4359811765987488}
   - {fileID: 4543857414105032}
   - {fileID: 4766219631839462}
+  - {fileID: 4284477843595558}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -192.211, z: 0}
+--- !u!4 &4284477843595558
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1659392932075626}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 0.6666667}
+  m_Children: []
+  m_Father: {fileID: 4203124393188526}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4359811765987488
 Transform:
@@ -258,6 +289,102 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114126935049928236
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1659392932075626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 157053555, guid: 9fa2ecd1ff2ad394281dd3bf72c5b76e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dataSerializer:
+    _preferredSerialization: 2
+    _serializedData: 
+    _serializedMetaData: <meta></meta>
+    _serializedGameObjects: []
+    _serializedCustomData: []
+  _serializer:
+    _preferredSerialization: 2
+    _includeCustomData: 0
+    _serializedDocument: "\n{\n    \"component\" : {\n        \"-version\" : \"1.8\",\n
+      \       \"-type\"    : \"RAIN.Core.AIRig\",\n        \"-reference\" : \"0\",\n
+      \       \"-includecustomdata\" : \"False\",\n        \"_visualMode\"        :
+      \"OnWhenSelected\",\n        \"_useUnityMessages\"  : \"True\",\n        \"_useFixedUpdate\"
+      \   : \"False\",\n        \"_ai\"                : {\n            \"-reference\"
+      : \"1\",\n            \"_isActive\"  : \"True\",\n            \"_body\"      :
+      {\n                \"-sceneobject\" : \"db411420-91b6-4d58-8090-ca412363c288\"\n
+      \           },\n            \"_workingMemory\" : {\n                \"-type\"
+      : \"RAIN.Memory.BasicMemory\",\n                \"-reference\" : \"2\",\n                \"_memoryItems\"
+      : {\n                }\n            },\n            \"_mind\"          : {\n
+      \               \"-type\" : \"RAIN.Minds.BasicMind\",\n                \"-reference\"
+      : \"3\",\n                \"_behaviorTree\" : {\n                    \"-object\"
+      : \"0\"\n                },\n                \"_behaviorTreeBindings\" : {\n
+      \               }\n            },\n            \"_motor\"         : {\n                \"-type\"
+      : \"RAIN.Motion.BasicMotor\",\n                \"-reference\" : \"4\",\n                \"_speed\"
+      \    : \"1\",\n                \"_rotationSpeed\" : \"360\",\n                \"_closeEnoughDistance\"
+      : \"0.1\",\n                \"_closeEnoughAngle\"    : \"0.1\",\n                \"_faceBeforeMoveAngle\"
+      : \"360\",\n                \"_maxHeightOffset\"     : \"1\",\n                \"_allow3DMovement\"
+      \    : \"False\",\n                \"_allow3DRotation\"     : \"False\",\n                \"_allowOffGraphMovement\"
+      : \"True\",\n                \"_useRootMotion\"         : \"False\",\n                \"_overrideRootRotation\"
+      \ : \"True\",\n                \"_mecanimParameters\"     : {\n                }\n
+      \           },\n            \"_animator\"      : {\n                \"-type\"
+      : \"RAIN.Animation.BasicAnimator\",\n                \"-reference\" : \"5\",\n
+      \               \"_showVisual\" : \"True\",\n                \"_leftEye\"    :
+      {\n                    \"-reference\" : \"6\",\n                    \"_jointColor\"
+      : \"0.6,0.6,0.6,1\",\n                    \"_joint\"      : {\n                        \"-sceneobject\"
+      : \"\"\n                    },\n                    \"_jointOffset\" : \"0,0,0\",\n
+      \                   \"_jointOrientation\" : \"0,0,0\",\n                    \"_maxLeftRight\"
+      \    : \"60\",\n                    \"_maxUpDown\"        : \"45\",\n                    \"_weight\"
+      \          : \"1\"\n                },\n                \"_rightEye\"   : {\n
+      \                   \"-reference\" : \"7\",\n                    \"_jointColor\"
+      : \"0.6,0.6,0.6,1\",\n                    \"_joint\"      : {\n                        \"-sceneobject\"
+      : \"\"\n                    },\n                    \"_jointOffset\" : \"0,0,0\",\n
+      \                   \"_jointOrientation\" : \"0,0,0\",\n                    \"_maxLeftRight\"
+      \    : \"60\",\n                    \"_maxUpDown\"        : \"45\",\n                    \"_weight\"
+      \          : \"1\"\n                },\n                \"_head\"       : {\n
+      \                   \"-reference\" : \"8\",\n                    \"_jointColor\"
+      : \"0.6,0,0,1\",\n                    \"_joint\"      : {\n                        \"-sceneobject\"
+      : \"\"\n                    },\n                    \"_jointOffset\" : \"0,0,0\",\n
+      \                   \"_jointOrientation\" : \"0,0,0\",\n                    \"_maxLeftRight\"
+      \    : \"60\",\n                    \"_maxUpDown\"        : \"45\",\n                    \"_weight\"
+      \          : \"1\"\n                },\n                \"_neck\"       : {\n
+      \                   \"-reference\" : \"9\",\n                    \"_jointColor\"
+      : \"0.6,0,0,1\",\n                    \"_joint\"      : {\n                        \"-sceneobject\"
+      : \"\"\n                    },\n                    \"_jointOffset\" : \"0,0,0\",\n
+      \                   \"_jointOrientation\" : \"0,0,0\",\n                    \"_maxLeftRight\"
+      \    : \"60\",\n                    \"_maxUpDown\"        : \"45\",\n                    \"_weight\"
+      \          : \"1\"\n                },\n                \"_lookTime\"   : \"1\",\n
+      \               \"_minimumTargetChange\" : \"0.1\",\n                \"_resetEachFrame\"
+      \     : \"False\"\n            },\n            \"_navigator\"     : {\n                \"-type\"
+      : \"RAIN.Navigation.BasicNavigator\",\n                \"-reference\" : \"10\",\n
+      \               \"_drawPaths\" : \"False\",\n                \"_pathColor\"
+      : \"0,0.6,0,1\",\n                \"_outlineColorOffset\" : \"-0.5\",\n                \"_maxPathfindingSteps\"
+      : \"100\",\n                \"_maxPathLength\"       : \"0\",\n                \"_padding\"
+      \            : \"0\",\n                \"_graphTags\"           : {\n                }\n
+      \           },\n            \"_senses\"        : {\n                \"-type\"
+      : \"RAIN.Perception.BasicSenses\",\n                \"-reference\" : \"11\",\n
+      \               \"_sensors\"   : {\n                    \"element0\" : {\n                        \"-type\"
+      : \"RAIN.Perception.Sensors.VisualSensor\",\n                        \"-reference\"
+      : \"12\",\n                        \"_showVisual\" : \"True\",\n                        \"_sensorName\"
+      : \"Sight\",\n                        \"_isActive\"   : \"True\",\n                        \"_sensorColor\"
+      : \"0.6,0.6,0.6,1\",\n                        \"_mountPoint\"  : {\n                            \"-sceneobject\"
+      : \"db411420-91b6-4d58-8090-ca412363c288\",\n                            \"-component\"
+      \  : \"0\"\n                        },\n                        \"_positionOffset\"
+      : \"0,0,0\",\n                        \"_angleOffset\"    : \"0,0,0\",\n                        \"_filters\"
+      \       : {\n                        },\n                        \"_range\"
+      \         : \"50\",\n                        \"_canDetectSelf\"  : \"False\",\n
+      \                       \"_horizontalAngle\" : \"148\",\n                        \"_verticalAngle\"
+      \  : \"180\",\n                        \"_lineOfSight\"     : \"False\",\n                        \"_lineOfSightMask\"
+      : \"-5\"\n                    }\n                }\n            },\n            \"_customElements\"
+      : {\n            }\n        }\n    }\n}"
+    _serializedMetaDocument: <meta><element0><key>/component/_ai+_selected</key><value
+      type="System.Int32">5</value></element0></meta>
+    _serializedObjects:
+    - {fileID: 4900000, guid: bf5191b4e84412f459b7be519e0fb037, type: 3}
+    _serializedCustomData: []
 --- !u!114 &114335332291703434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -287,13 +414,27 @@ MonoBehaviour:
     _serializedMetaDocument: <meta></meta>
     _serializedObjects: []
     _serializedCustomData: []
+--- !u!114 &114409997537251118
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1948805390965722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2faa8e84246820d45999ba4584ea95e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ai: {fileID: 114126935049928236}
+  sight: 1
+  attack: 0
 --- !u!114 &114502604847672512
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1948805390965722}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a024f37a30c6f04998de2120cfffb5b, type: 3}
   m_Name: 
@@ -306,6 +447,7 @@ MonoBehaviour:
   coolDownInterval: 1
   missileTemplate: {fileID: 1235031061803072, guid: 8b82c1728411deb4d98d1f72b6c9ed51,
     type: 2}
+  ai: {fileID: 114126935049928236}
 --- !u!114 &114887685073434240
 MonoBehaviour:
   m_ObjectHideFlags: 1

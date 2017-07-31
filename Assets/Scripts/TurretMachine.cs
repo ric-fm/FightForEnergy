@@ -3,12 +3,14 @@
 */
 
 
+using RAIN.Core;
+using RAIN.Memory;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class TurretMachine : Machine
 {
-	public Enemy target;
+	public GameObject target;
 
 	public Transform Cannon;
 	public Transform shootPoint;
@@ -24,6 +26,9 @@ public class TurretMachine : Machine
 	Vector3 shootDirection;
 	float shootAngle;
 
+	public AIRig ai;
+
+
 	protected override void Start()
 	{
 		base.Start();
@@ -34,6 +39,8 @@ public class TurretMachine : Machine
 	void Update()
 	{
 		Aim();
+
+		target = GetTarget();
 
 		if (canShoot && target != null && CannonReady())
 		{
@@ -47,7 +54,7 @@ public class TurretMachine : Machine
 		{
 			shootDirection = (transform.position - target.transform.position).normalized;
 
-			shootAngle = -Mathf.Atan2(shootDirection.x, -shootDirection.z) * Mathf.Rad2Deg;
+			shootAngle = -Mathf.Atan2(-shootDirection.x, shootDirection.z) * Mathf.Rad2Deg;
 
 			Cannon.transform.localRotation = Quaternion.Lerp(Cannon.transform.localRotation, Quaternion.Euler(-90.0f, 0.0f, shootAngle), turnSpeed * Time.deltaTime);
 		}
@@ -61,11 +68,13 @@ public class TurretMachine : Machine
 
 	void Shoot()
 	{
-		GameObject missileGO = Instantiate(missileTemplate, shootPoint.position, Quaternion.Euler(0.0f, shootAngle, 0.0f));
+		GameObject missileGO = Instantiate(missileTemplate, shootPoint.position, Quaternion.Euler(0.0f, 0.0f, shootAngle));
+
+		missileGO.transform.forward = -shootDirection;
 
 		Missile missile = missileGO.GetComponent<Missile>();
 
-		missile.Shoot(shootDirection, shootSpeed);
+		missile.Shoot(-shootDirection, shootSpeed);
 		StartCoroutine(CoolDown());
 	}
 
@@ -76,5 +85,21 @@ public class TurretMachine : Machine
 		yield return new WaitForSeconds(coolDownInterval);
 
 		canShoot = true;
+	}
+
+	public GameObject GetTarget()
+	{
+		AI ai2 = ai.AI;
+
+		RAINMemory memory = ai2.WorkingMemory;
+
+		object obj = memory.GetItem("target");
+
+		if (obj != null)
+		{
+			return (GameObject)obj;
+		}
+
+		return null;
 	}
 }
