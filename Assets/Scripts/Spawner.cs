@@ -16,12 +16,21 @@ public class Spawner : MonoBehaviour
 
 	public ProgressiveWaves progressiveWave;
 
+	public int enemyCount;
+
+	public int maxEnemies = 4;
+
 
 	public int currentWave;
 	public float range;
+	public float waitTimeForCheckMaxEnemies;
+
+	List<GameObject> spawnedEntities = new List<GameObject>();
 
 	void Start()
 	{
+		GameManager.Instance.OnEnemyDestroyed += OnEnemyDestroyed;
+
 		progressiveWave.OrderProbabilities();
 
 		StartCoroutine(SpawnLoop());
@@ -29,17 +38,29 @@ public class Spawner : MonoBehaviour
 
 	bool waveCompleted = false;
 
-	void CustomSpawnWave(CustomWave wave)
+
+	void OnEnemyDestroyed(Enemy enemy)
+	{
+		spawnedEntities.Remove(enemy.gameObject);
+	}
+
+	bool CanSpawn()
 	{
 
+		return spawnedEntities.Count < maxEnemies;
+	}
+
+	bool IsCustomWave()
+	{
+		return currentWave < customWaves.Count;
 	}
 
 	IEnumerator SpawnLoop()
 	{
 		while (true)
 		{
-			if (currentWave < customWaves.Count)
-			{
+			if (IsCustomWave())
+				{
 				Debug.Log("Custom spawn");
 				CustomWave customWave = customWaves[currentWave];
 
@@ -49,11 +70,18 @@ public class Spawner : MonoBehaviour
 
 					for(int i = 0; i < customSpawn.rate * progressiveWave.rateMultiplier; i++)
 					{
+						while(!CanSpawn())
+						{
+							Debug.Log("Max Reached");
+							yield return new WaitForSeconds(waitTimeForCheckMaxEnemies);
+						}
 						float randX = Random.Range(transform.position.x - range, transform.position.x + range);
 						float randZ = Random.Range(transform.position.z - range, transform.position.z + range);
 
 						Vector3 randPosition = new Vector3(randX, 0.0f, randZ);
 						GameObject spawnEntityGO = GameObject.Instantiate(customSpawn.spawnTemplate, randPosition, Quaternion.identity);
+						//customWave.SpawnedEntity(spawnEntityGO);
+						spawnedEntities.Add(spawnEntityGO);
 
 						yield return new WaitForSeconds(customSpawn.delay);
 					}
@@ -64,7 +92,10 @@ public class Spawner : MonoBehaviour
 			}
 			else
 			{
-
+				while (!CanSpawn())
+				{
+					yield return new WaitForSeconds(waitTimeForCheckMaxEnemies);
+				}
 				Debug.Log("Progresive spawn");
 
 				float randValue = Random.Range(0.0f, 1.0f);
@@ -124,8 +155,12 @@ public class Spawner : MonoBehaviour
 		//spawnEntityGO.transform.SetParent(transform, true);
 
 		spawnStat.spawnedEntities.Add(spawnEntityGO);
+		++spawnStat.spawnCount;
 
-		if (spawnStat.rate == spawnStat.spawnedEntities.Count)
+		spawnedEntities.Add(spawnEntityGO);
+
+
+		if (spawnStat.rate == spawnStat.spawnCount)
 		{
 			progressiveWave.OrderProbabilities();
 		}

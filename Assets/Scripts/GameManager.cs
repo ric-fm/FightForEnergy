@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 	{
 		playerController = FindObjectOfType<PlayerController>();
 	}
-	
+
 	Vector3 cursorPosition;
 	public Vector3 CursorPosition
 	{
@@ -78,6 +78,19 @@ public class GameManager : MonoBehaviour
 			//gridedCursorPosition.z += GridTileSize / 2;
 
 			return gridedCursorPosition;
+		}
+	}
+
+
+	public delegate void EnemyEvent(Enemy enemy);
+
+	public event EnemyEvent OnEnemyDestroyed;
+
+	public void NotifyEnemyDestroyed(Enemy enemy)
+	{
+		if(OnEnemyDestroyed != null)
+		{
+			OnEnemyDestroyed(enemy);
 		}
 	}
 }
