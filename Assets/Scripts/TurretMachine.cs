@@ -144,11 +144,12 @@ public class TurretMachine : Machine
 
 	public override void CheckOn()
 	{
-		if (!energy.HasEnergy && isRunning)
-		{
+		//if (!energy.HasEnergy && isRunning)
+		if (energy.Amount < minimunEnergyAmount && isRunning)
+			{
 			Off();
 		}
-		else if (energy.HasEnergy && !isRunning)
+		else if (energy.Amount >= minimunEnergyAmount && !isRunning)
 		{
 			On();
 		}

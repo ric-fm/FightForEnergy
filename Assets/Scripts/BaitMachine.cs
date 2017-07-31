@@ -40,11 +40,13 @@ public class BaitMachine : Machine
 
 	public override void CheckOn()
 	{
-		if (!energy.HasEnergy && isRunning)
+		//if (!energy.HasEnergy && isRunning)
+		if (energy.Amount < minimunEnergyAmount && isRunning)
 		{
-			Off();
+				Off();
 		}
-		else if (energy.HasEnergy && !isRunning)
+		//else if (energy.HasEnergy && !isRunning)
+		if (energy.Amount >= minimunEnergyAmount && !isRunning)
 		{
 			On();
 		}
