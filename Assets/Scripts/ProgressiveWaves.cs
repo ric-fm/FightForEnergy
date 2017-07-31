@@ -118,6 +118,22 @@ public class ProgressiveWaves
 			delayBetweenWavesMultiplier += delayBetweenWavesIncrement;
 		}
 	}
+
+	public int GetAlliveEnemiesSpawned()
+	{
+		int enemies = 0;
+
+		foreach(SpawnStats spawnStat in spawnStats)
+		{
+			enemies += spawnStat.spawnedEntities.Count;
+		}
+		return enemies;
+	}
+
+	public void EnemyDestroyed(Enemy enemy)
+	{
+
+	}
 }
 
 
@@ -128,6 +144,7 @@ public class SpawnStats
 
 	public List<GameObject> spawnedEntities;
 
+	public int spawnCount;
 	public int rate;
 
 	public float probability;

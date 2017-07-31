@@ -55,4 +55,9 @@ public class Enemy : MonoBehaviour
 			OnEnemyDestroyed(this);
 		}
 	}
+
+	private void OnDestroy()
+	{
+		GameManager.Instance.NotifyEnemyDestroyed(this);
+	}
 }

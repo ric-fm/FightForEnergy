@@ -11,7 +11,25 @@ using UnityEngine;
 public class CustomWave
 {
 	public List<CustomSpawn> spaws;
+
+	List<GameObject> spawnedEntities = new List<GameObject>();
+
 	public float delay;
+
+	public int GetAlliveEnemiesSpawned()
+	{
+		return spawnedEntities.Count;
+	}
+
+	public void EnemyDestroyed(Enemy enemy)
+	{
+		spawnedEntities.Remove(enemy.gameObject);
+	}
+
+	public void SpawnedEntity(GameObject enemyGO)
+	{
+		spawnedEntities.Add(enemyGO);
+	}
 }
 
 [System.Serializable]
