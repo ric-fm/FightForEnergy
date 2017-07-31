@@ -13,6 +13,9 @@ public class Missile : MonoBehaviour
 
 	Rigidbody rb;
 
+	public AudioClip ExplosionSound;
+
+
 	void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
@@ -34,6 +37,7 @@ public class Missile : MonoBehaviour
 			Destroy(collision.gameObject);
 		}
 
+		SoundManager.Instance.PlaySingleAtLocation(ExplosionSound, transform.position);
 		Destroy(gameObject);
 	}
 }

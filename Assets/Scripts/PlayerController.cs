@@ -51,11 +51,17 @@ public class PlayerController : MonoBehaviour
 	public GameObject baitMachineTemplate;
 	public GameObject turretMachineTemplate;
 
+	AudioSource audioSource;
+	public AudioClip ChargeSound;
+	public AudioClip StealEnergySound;
+
 
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
 		anim = GetComponent<Animator>();
+
+		audioSource = GetComponent<AudioSource>();
 	}
 
 	// Use this for initialization
@@ -166,12 +172,18 @@ public class PlayerController : MonoBehaviour
 						targetHitEnergy.GetComponent<Enemy>().OnEnemyDestroyed += OnEnemyDestroyed;
 
 						SoundManager.Instance.PlaySingleAtLocation(PlugEnemySound, targetHitEnergy.transform.position);
+
+						audioSource.clip = StealEnergySound;
+						audioSource.Play();
 						break;
 
 					case "Machine":
 						targetHitEnergy.GetComponent<Machine>().OnMachineEnergyFilled += OnMachineEnergyFilled;
 
 						SoundManager.Instance.PlaySingleAtLocation(PlugMachineSound, targetHitEnergy.transform.position);
+
+						audioSource.clip = ChargeSound;
+						audioSource.Play();
 
 						break;
 				}
@@ -389,6 +401,8 @@ public class PlayerController : MonoBehaviour
 	{
 		if (shooting)
 		{
+			//if(!backing)
+			//{ }
 			if (targetHitEnergy != null)
 			{
 				shootGO.transform.position = targetHitEnergy.transform.position;
@@ -499,6 +513,7 @@ public class PlayerController : MonoBehaviour
 	void ClearTargetHit()
 	{
 		targetHitEnergy = null;
+		audioSource.Stop();
 	}
 
 	void OnMachineSpawned(Machine machine)
