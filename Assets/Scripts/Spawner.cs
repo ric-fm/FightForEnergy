@@ -12,117 +12,110 @@ using System.Linq;
 
 public class Spawner : MonoBehaviour
 {
-	public List<SpawnStats> spawnStats;
+	public List<CustomWave> customWaves;
 
-	public float range;
+	public ProgressiveWaves progressiveWave;
+
 
 	public int currentWave;
+	public float range;
 
-	public float difficultyMultiplier = 1.0f;
-
-	public float delayMultiplier = 1.0f;
-
-	public float delayBetweenWaves = 5.0f;
-
-	Dictionary<SpawnStats, float> probabilities = new Dictionary<SpawnStats, float>();
-
-	void Start () {
-		OrderProbabilities();
+	void Start()
+	{
+		progressiveWave.OrderProbabilities();
 
 		StartCoroutine(SpawnLoop());
 	}
 
 	bool waveCompleted = false;
 
+	void CustomSpawnWave(CustomWave wave)
+	{
+
+	}
+
 	IEnumerator SpawnLoop()
 	{
-		while(true)
+		while (true)
 		{
-			float randValue = Random.Range(0.0f, 1.0f);
-			float randX = Random.Range(transform.position.x - range, transform.position.x + range);
-			float randZ = Random.Range(transform.position.z - range, transform.position.z + range);
-
-			Vector3 randPosition = new Vector3(randX, 0.0f, randZ);
-
-			SpawnStats spawn = GetSpawnStats(randValue);
-
-			if(spawn != null)
+			if (currentWave < customWaves.Count)
 			{
-				Spawn(spawn, randPosition);
-			}
+				Debug.Log("Custom spawn");
+				CustomWave customWave = customWaves[currentWave];
 
-			if(probabilities.Count == 0)
-			{
-				waveCompleted = true;
-			}
+				foreach(CustomSpawn customSpawn in customWave.spaws)
+				{
+					yield return new WaitForSeconds(customWave.delay);
 
-			if(waveCompleted)
-			{
-				waveCompleted = false;
+					for(int i = 0; i < customSpawn.rate * progressiveWave.rateMultiplier; i++)
+					{
+						float randX = Random.Range(transform.position.x - range, transform.position.x + range);
+						float randZ = Random.Range(transform.position.z - range, transform.position.z + range);
+
+						Vector3 randPosition = new Vector3(randX, 0.0f, randZ);
+						GameObject spawnEntityGO = GameObject.Instantiate(customSpawn.spawnTemplate, randPosition, Quaternion.identity);
+
+						yield return new WaitForSeconds(customSpawn.delay);
+					}
+
+				}
+
 				++currentWave;
-				
-				yield return new WaitForSeconds(delayBetweenWaves);
 			}
 			else
 			{
-				if(spawn != null)
+
+				Debug.Log("Progresive spawn");
+
+				float randValue = Random.Range(0.0f, 1.0f);
+				float randX = Random.Range(transform.position.x - range, transform.position.x + range);
+				float randZ = Random.Range(transform.position.z - range, transform.position.z + range);
+
+				Vector3 randPosition = new Vector3(randX, 0.0f, randZ);
+
+				SpawnStats spawn = progressiveWave.GetSpawnStats(randValue);
+
+				if (spawn != null)
 				{
-					yield return new WaitForSeconds(spawn.interval);
+					Spawn(spawn, randPosition);
+				}
+
+				//if (probabilities.Count == 0)
+				//{
+				//	waveCompleted = true;
+				//}
+
+				if (waveCompleted)
+				{
+					waveCompleted = false;
+					NextProggresiveWave();
+
+					yield return new WaitForSeconds(progressiveWave.delayBetweenWaves * progressiveWave.delayBetweenWavesMultiplier);
 				}
 				else
 				{
-					waveCompleted = true;
+					if (spawn != null)
+					{
+						yield return new WaitForSeconds(spawn.interval * progressiveWave.intervalMultiplier);
+					}
+					else
+					{
+						waveCompleted = true;
+					}
 				}
 			}
+
 		}
 	}
 
-	void OrderProbabilities()
+	void NextProggresiveWave()
 	{
-		float probabilitySum = 0;
-		probabilities.Clear();
-
-		List<SpawnStats> spawnProbabilities = spawnStats.OrderBy(sp => sp.probability).Reverse().ToList();
-
-
-		for (int i = 0; i < spawnProbabilities.Count; i++)
-		{
-			if (spawnProbabilities[i].rate > spawnProbabilities[i].spawnedEntities.Count)
-			{
-				probabilitySum += spawnStats[i].probability;
-			}
-		}
-
-		float probSum = 0;
-		for (int i = 0; i < spawnProbabilities.Count; i++)
-		{
-			if (spawnProbabilities[i].rate > spawnProbabilities[i].spawnedEntities.Count)
-			{
-				float prob = spawnProbabilities[i].probability / probabilitySum + probSum;
-				probSum = prob;
-				probabilities.Add(spawnProbabilities[i], prob);
-			}
-
-		}
+		++currentWave;
+		progressiveWave.UpdateDifficulty();
 	}
 
-	public SpawnStats GetSpawnStats(float randValue)
-	{
-		SpawnStats spawn = null;
-		foreach(SpawnStats key in probabilities.Keys)
-		{
-			if(randValue <= probabilities[key])
-			{
-				spawn = key;
-				break;
-			}
-		}
-		if(spawn == null && probabilities.Count > 0)
-		{
-			spawn = probabilities.First().Key;
-		}
-		return spawn;
-	}
+
+	
 
 	void Spawn(SpawnStats spawnStat, Vector3 position)
 	{
@@ -132,23 +125,11 @@ public class Spawner : MonoBehaviour
 
 		spawnStat.spawnedEntities.Add(spawnEntityGO);
 
-		if(spawnStat.rate == spawnStat.spawnedEntities.Count)
+		if (spawnStat.rate == spawnStat.spawnedEntities.Count)
 		{
-			OrderProbabilities();
+			progressiveWave.OrderProbabilities();
 		}
 	}
 }
 
-[System.Serializable]
-public class SpawnStats
-{
-	public GameObject spawnTemplate;
 
-	public List<GameObject> spawnedEntities;
-
-	public int rate;
-
-	public float probability;
-
-	public float interval;
-}

@@ -24,11 +24,8 @@ public class CasterEnemy : Enemy
 
 	public void Shoot()
 	{
-		//GameObject target = GetTarget();
-
 		if (currentTarget != null)
 		{
-			Debug.Log("shoot to " + currentTarget.name);
 
 			Vector3 shootDirection = (shootPoint.position - currentTarget.transform.position).normalized;
 
@@ -50,10 +47,6 @@ public class CasterEnemy : Enemy
 		if (currentTarget != null)
 		{
 			transform.LookAt(currentTarget.transform);
-		}
-		else
-		{
-			Debug.Log("no target");
 		}
 	}
 }
