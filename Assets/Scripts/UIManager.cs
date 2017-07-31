@@ -24,11 +24,11 @@ public class UIManager : MonoBehaviour
 		instance = this;
 	}
 
-
-	public Text playerEnergyText;
+	public Scrollbar energyBar;
 
 	public void SetPlayerEnergy(int energy, int maxEnergy)
 	{
-		playerEnergyText.text = string.Format("Energy: {0} / {1}", energy, maxEnergy);
+		float energyPercent = (float)energy / (float)maxEnergy;
+		energyBar.size = energyPercent;
 	}
 }
