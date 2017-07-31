@@ -3,6 +3,8 @@
 */
 
 
+using RAIN.Entities;
+using RAIN.Entities.Aspects;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +15,8 @@ public class Machine : MonoBehaviour
 	public delegate void MachineEvent(Machine machine);
 
 	public event MachineEvent OnMachineEnergyFilled;
+
+	public EntityRig entity;
 
 
 	protected virtual void Awake()
@@ -46,5 +50,18 @@ public class Machine : MonoBehaviour
 		{
 			OnMachineEnergyFilled(this);
 		}
+	}
+
+	public void AddEntity()
+	{
+		VisualAspect aspect = new VisualAspect("EnemyTarget");
+		entity.Entity.Form = gameObject;
+		aspect.MountPoint = transform;
+		entity.Entity.AddAspect(aspect);
+	}
+
+	public void RemoveEntity()
+	{
+		entity.Entity.RemoveAspect(0);
 	}
 }

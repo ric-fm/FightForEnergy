@@ -7,26 +7,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RAIN.Entities;
+using RAIN.Entities.Aspects;
 public class BaitMachine : Machine
 {
 	public GameObject particles;
 
 	bool isRunning = false;
 
-	public EntityRig entity;
+	
 
 	public void On()
 	{
 		isRunning = true;
 		particles.SetActive(true);
-		entity.enabled = true;
+		//entity.enabled = true;
+
+		//entityGO.AddComponent<EntityRig>();
+		AddEntity();
+		
+
 	}
 
 	public void Off()
 	{
 		isRunning = false;
 		particles.SetActive(false);
-		entity.enabled = false;
+		//entity.enabled = false;
+
+		//Destroy(entityGO.GetComponent<EntityRig>());
+		RemoveEntity();
 	}
 
 	public override void CheckOn()

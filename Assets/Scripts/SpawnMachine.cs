@@ -42,12 +42,11 @@ public class SpawnMachine : MonoBehaviour
 			{
 				if (CanSpawnMachineOnPosition())
 				{
-					GameObject newMachine = GameObject.Instantiate(machineTemplate, spawnPosition, Quaternion.identity);
-					Destroy(machineGhost);
-					machineGhost = null;
+					//GameObject newMachine = GameObject.Instantiate(machineTemplate, spawnPosition, Quaternion.identity);
+					//Destroy(machineGhost);
 
 
-					Machine machine = newMachine.GetComponent<Machine>();
+					Machine machine = machineGhost.GetComponent<Machine>();
 					if(machine == null)
 					{
 						Debug.Log("machine null");
@@ -58,7 +57,8 @@ public class SpawnMachine : MonoBehaviour
 
 					}
 					machine.CheckOn();
-					NotifySpawn(newMachine);
+					NotifySpawn(machineGhost);
+					machineGhost = null;
 				}
 			}
 		}

@@ -30,7 +30,6 @@ public class TurretMachine : Machine
 	public AIRig ai;
 
 	bool isRunning;
-	public EntityRig entity;
 
 	Animator anim;
 
@@ -121,7 +120,8 @@ public class TurretMachine : Machine
 	public void On()
 	{
 		isRunning = true;
-		entity.enabled = true;
+		AddEntity();
+
 		anim.SetBool("IsOn", true);
 
 		StartCoroutine(CoolDown());
@@ -131,8 +131,7 @@ public class TurretMachine : Machine
 	public void Off()
 	{
 		isRunning = false;
-		entity.enabled = false;
-
+		RemoveEntity();
 
 		anim.SetBool("IsOn", true);
 		StopAllCoroutines();

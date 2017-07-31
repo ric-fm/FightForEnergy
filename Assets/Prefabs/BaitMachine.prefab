@@ -28,6 +28,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &1449821593518372
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4636084005399662}
+  - component: {fileID: 114555009787037998}
+  m_Layer: 0
+  m_Name: Entity
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1494541232704424
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,22 +76,6 @@ GameObject:
   - component: {fileID: 23615078590567730}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1936931892694452
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4578871906316068}
-  - component: {fileID: 114606902364659102}
-  m_Layer: 0
-  m_Name: Entity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,12 +156,12 @@ Transform:
   m_Father: {fileID: 4803243196198140}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4578871906316068
+--- !u!4 &4636084005399662
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1936931892694452}
+  m_GameObject: {fileID: 1449821593518372}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
@@ -194,7 +194,7 @@ Transform:
   m_Children:
   - {fileID: 4413335894608096}
   - {fileID: 4061794659077904}
-  - {fileID: 4578871906316068}
+  - {fileID: 4636084005399662}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -331,15 +331,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07286ad06bcad704fb82608cb3192411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entity: {fileID: 114555009787037998}
   particles: {fileID: 1213427419766778}
-  entity: {fileID: 0}
---- !u!114 &114606902364659102
+--- !u!114 &114555009787037998
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1936931892694452}
-  m_Enabled: 0
+  m_GameObject: {fileID: 1449821593518372}
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 220721487, guid: 9fa2ecd1ff2ad394281dd3bf72c5b76e, type: 3}
   m_Name: 
@@ -351,26 +351,12 @@ MonoBehaviour:
     _serializedGameObjects: []
     _serializedCustomData: []
   _serializer:
-    _preferredSerialization: 2
+    _preferredSerialization: 1
     _includeCustomData: 0
-    _serializedDocument: "\n{\n    \"component\" : {\n        \"-version\" : \"1.8\",\n
-      \       \"-type\"    : \"RAIN.Entities.EntityRig\",\n        \"-reference\"
-      : \"0\",\n        \"-includecustomdata\" : \"False\",\n        \"_visualMode\"
-      \       : \"OnWhenSelected\",\n        \"_useUnityMessages\"  : \"True\",\n
-      \       \"_entity\"            : {\n            \"-reference\" : \"1\",\n            \"_entityName\"
-      : \"BaitMachine\",\n            \"_isActive\"   : \"True\",\n            \"_form\"
-      \      : {\n                \"-sceneobject\" : \"d57463c3-a972-478c-a405-0664e282abf3\"\n
-      \           },\n            \"_aspects\"    : {\n                \"element0\"
-      : {\n                    \"-type\" : \"RAIN.Entities.Aspects.VisualAspect\",\n
-      \                   \"-reference\" : \"2\",\n                    \"_showVisual\"
-      : \"True\",\n                    \"_aspectName\" : \"EnemyTarget\",\n                    \"_isActive\"
-      \  : \"True\",\n                    \"_aspectColor\" : \"0,0,0.6,1\",\n                    \"_outlineColorOffset\"
-      : \"-0.5\",\n                    \"_selectionColorOffset\" : \"0.4\",\n                    \"_visualSize\"
-      \          : \"0.1\",\n                    \"_mountPoint\"           : {\n                        \"-sceneobject\"
-      : \"d57463c3-a972-478c-a405-0664e282abf3\",\n                        \"-component\"
-      \  : \"0\"\n                    },\n                    \"_positionOffset\"
-      \      : \"0,0,0\",\n                    \"_angleOffset\"          : \"0,0,0\"\n
-      \               }\n            }\n        }\n    }\n}"
+    _serializedDocument: <component version="1.8" type="RAIN.Entities.EntityRig" reference="0"
+      includecustomdata="False"><_visualMode>OnWhenSelected</_visualMode><_useUnityMessages>True</_useUnityMessages><_entity
+      reference="1"><_entityName>BaitMachine</_entityName><_isActive>True</_isActive><_form
+      sceneobject="d57463c3-a972-478c-a405-0664e282abf3"></_form><_aspects></_aspects></_entity></component>
     _serializedMetaDocument: <meta></meta>
     _serializedObjects: []
     _serializedCustomData: []
