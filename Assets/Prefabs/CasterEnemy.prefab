@@ -490,7 +490,7 @@ MonoBehaviour:
   shootPoint: {fileID: 4104475038904910}
   bulletTemplate: {fileID: 1976472760567684, guid: 4050863091ee1e14cb74e07df5e38ae1,
     type: 2}
-  shootSpeed: 800
+  shootSpeed: 1000
 --- !u!114 &114310913377093772
 MonoBehaviour:
   m_ObjectHideFlags: 1

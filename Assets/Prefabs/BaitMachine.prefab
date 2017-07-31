@@ -189,7 +189,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1494541232704424}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -46.544525, y: 1.0000013, z: 27.062366}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 4413335894608096}
@@ -211,7 +211,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 64e2a18b559513448be272cfa9b5fb18, type: 2}
+  - {fileID: 2100000, guid: 5dc064d609c631a42a24bdd440773053, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -332,6 +332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 114555009787037998}
+  minimunEnergyAmount: 1
   particles: {fileID: 1213427419766778}
 --- !u!114 &114555009787037998
 MonoBehaviour:
@@ -371,8 +372,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb46fc665a0a0d74d919961e0733367f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 3
-  MaxAmount: 10
+  amount: 20
+  MaxAmount: 20
   CanSteal: 1
   CanReceive: 1
   stealCoolDown: 1

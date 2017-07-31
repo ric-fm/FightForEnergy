@@ -25,6 +25,9 @@ public class Spawner : MonoBehaviour
 	public float range;
 	public float waitTimeForCheckMaxEnemies;
 
+	float initMinRand = 5.0f;
+	float initMaxRand = 15.0f;
+
 	List<GameObject> spawnedEntities = new List<GameObject>();
 
 	void Start()
@@ -62,6 +65,9 @@ public class Spawner : MonoBehaviour
 
 	IEnumerator SpawnLoop()
 	{
+		float initDelay = Random.Range(initMinRand, initMaxRand);
+		yield return new WaitForSeconds(initDelay);
+
 		while (true)
 		{
 			if (IsCustomWave())

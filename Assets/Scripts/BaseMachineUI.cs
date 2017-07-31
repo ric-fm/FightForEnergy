@@ -55,6 +55,15 @@ public class BaseMachineUI : MonoBehaviour
 
 	PlayerController playerController;
 
+	MeshRenderer mRenderer;
+	Collider coll;
+
+	private void Awake()
+	{
+		mRenderer = GetComponent<MeshRenderer>();
+		coll = GetComponent<Collider>();
+	}
+
 	private void Start()
 	{
 		playerController = FindObjectOfType<PlayerController>();
@@ -102,11 +111,28 @@ public class BaseMachineUI : MonoBehaviour
 		}
 	}
 
+	void Show()
+	{
+		mRenderer.enabled = true;
+		coll.enabled = true;
+	}
+
+	void Hide()
+	{
+		mRenderer.enabled = false;
+		coll.enabled = false;
+	}
+
 	IEnumerator CoolDown(float interval)
 	{
 		canUpgrade = false;
+
+		Hide();
+
 		yield return new WaitForSeconds(interval);
 		canUpgrade = true;
+		Show();
+
 	}
 }
 

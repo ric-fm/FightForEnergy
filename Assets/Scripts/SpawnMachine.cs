@@ -57,7 +57,21 @@ public class SpawnMachine : MonoBehaviour
 
 	bool CanSpawnMachineOnPosition()
 	{
-		return true;
+		// Apuntado
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		Vector3 point = Vector3.zero;
+
+		RaycastHit hit;
+
+		if (Physics.Raycast(ray, out hit, 10000, 1 << LayerMask.NameToLayer("Ground")))
+		{
+			if(hit.collider.gameObject.tag == "Spawnable")
+			{
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	void NotifySpawn(GameObject machineGO)

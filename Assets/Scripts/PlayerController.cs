@@ -145,6 +145,11 @@ public class PlayerController : MonoBehaviour
 	void EnergyChanged(Energy energy)
 	{
 		UpdateEnergyUI();
+
+		if(!energy.HasEnergy)
+		{
+			GameManager.Instance.GameOver();
+		}
 	}
 
 	void UpdateEnergyUI()

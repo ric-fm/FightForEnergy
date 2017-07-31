@@ -44,8 +44,17 @@ public class UIManager : MonoBehaviour
 	public Text TimerValueText;
 	public Text EnemyDestroyedText;
 
+	public int currentMaxEnergy = 5;
+
 	public void SetPlayerEnergy(int energy, int maxEnergy)
 	{
+		int energyHealthSize = maxEnergy / currentMaxEnergy;
+		currentMaxEnergy = maxEnergy;
+
+		RectTransform rTransform = energyBar.GetComponent<RectTransform>();
+		rTransform.sizeDelta = new Vector2(rTransform.sizeDelta.x * energyHealthSize, rTransform.sizeDelta.y);
+		//rTransform.rect = new  Vector2(rTransform.rect.x * energyHealthSize, rTransform.rect.y);
+
 		float energyPercent = (float)energy / (float)maxEnergy;
 		energyBar.size = energyPercent;
 	}

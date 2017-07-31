@@ -473,7 +473,7 @@ MonoBehaviour:
   target: {fileID: 0}
   Cannon: {fileID: 4359811765987488}
   shootPoint: {fileID: 4880257648349718}
-  shootSpeed: 500
+  shootSpeed: 1000
   turnSpeed: 2
   coolDownInterval: 3
   missileTemplate: {fileID: 1235031061803072, guid: 8b82c1728411deb4d98d1f72b6c9ed51,
@@ -518,8 +518,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb46fc665a0a0d74d919961e0733367f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 5
-  MaxAmount: 5
+  amount: 10
+  MaxAmount: 10
   CanSteal: 1
   CanReceive: 1
   stealCoolDown: 1

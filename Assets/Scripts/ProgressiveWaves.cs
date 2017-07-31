@@ -103,9 +103,9 @@ public class ProgressiveWaves
 			probabilityMultiplier += probabilityIncrement;
 		}
 
-		if (Mathf.Abs(intervalMultiplier) < maxIntervalIncrement)
+		if (Mathf.Abs(intervalMultiplier) > maxIntervalIncrement)
 		{
-			intervalMultiplier += intervalIncrement;
+			intervalMultiplier -= intervalIncrement;
 		}
 
 		if (Mathf.Abs(rateMultiplier) < maxRateIncrement)

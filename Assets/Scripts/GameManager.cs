@@ -140,8 +140,11 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	public AudioClip GameOverSound;
+
 	public void GameOver()
 	{
+		SoundManager.Instance.PlaySingleAtLocation(GameOverSound, playerController.transform.position);
 		PauseTimer();
 
 		UIManager.Instance.ShowGameOver();
