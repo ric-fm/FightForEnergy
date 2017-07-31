@@ -26,9 +26,69 @@ public class UIManager : MonoBehaviour
 
 	public Scrollbar energyBar;
 
+	public GameObject UpgradePanel;
+	public Text UpgradeText;
+	public Text UpgradeValueText;
+	public Text UpgradeCostText;
+
+	public GameObject MachinePanel;
+	public Text MachineEnergyText;
+	public GameObject machineOnText;
+	public GameObject machineOffText;
+
 	public void SetPlayerEnergy(int energy, int maxEnergy)
 	{
 		float energyPercent = (float)energy / (float)maxEnergy;
 		energyBar.size = energyPercent;
 	}
+
+	public void ShowUpgrade(string text, bool showValue, float value, float cost)
+	{
+		UpgradeText.text = text;
+		UpgradePanel.SetActive(true);
+
+		if(showValue)
+		{
+			UpgradeValueText.text = "Value: " + value;
+		}
+		else
+		{
+			UpgradeValueText.text = "";
+		}
+
+		UpgradeCostText.text = "Energy Cost: " + cost;
+	}
+
+	public void HideUpgrade()
+	{
+		UpgradePanel.SetActive(false);
+		UpgradeText.text = "";
+		UpgradeValueText.text = "";
+		UpgradeCostText.text = "";
+
+	}
+
+	public void ShowMachineEnergyInfo(Machine machine, Energy energy)
+	{
+		MachineEnergyText.text = string.Format("{0} / {1}", energy.Amount, energy.MaxAmount);
+		MachinePanel.SetActive(true);
+
+		if(energy.Amount < machine.minimunEnergyAmount)
+		{
+			machineOffText.SetActive(true);
+			machineOnText.SetActive(false);
+		}
+		else
+		{
+			machineOnText.SetActive(true);
+			machineOffText.SetActive(false);
+		}
+	}
+
+	public void HideMachineEnergyInfo()
+	{
+		MachinePanel.SetActive(false);
+		MachineEnergyText.text = "";
+	}
+
 }

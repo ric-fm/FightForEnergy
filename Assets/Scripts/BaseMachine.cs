@@ -13,9 +13,15 @@ public class BaseMachine : Machine
 
 	bool playerIn = false;
 
+	bool canShowUpgrades = true;
+
+	
+
 	protected override void Start()
 	{
 		base.Start();
+
+		canShowUpgrades = energy.Amount >= minimunEnergyAmount;
 
 		HideUI();
 	}
@@ -25,7 +31,10 @@ public class BaseMachine : Machine
 		if (other.gameObject.tag == "Player")
 		{
 			playerIn = true;
-			ShowUI();
+			//if(canShowUpgrades)
+			//{
+			//	ShowUI();
+			//}
 		}
 	}
 
@@ -34,7 +43,7 @@ public class BaseMachine : Machine
 		if (other.gameObject.tag == "Player")
 		{
 			playerIn = false;
-			HideUI();
+			//HideUI();
 		}
 	}
 
@@ -54,6 +63,34 @@ public class BaseMachine : Machine
 		//foreach (GameObject ui in UIS)
 		//{
 		//	ui.SetActive(false);
+		//}
+	}
+
+	private void Update()
+	{
+		if (playerIn)
+		{
+			if(canShowUpgrades)
+			{
+				ShowUI();
+			}
+		}
+		else
+		{
+			HideUI();
+		}
+	}
+
+	protected override void OnEnergyChanged(Energy energy)
+	{
+		base.OnEnergyChanged(energy);
+		Debug.Log("Machine( " + gameObject.name + ") energy " + energy.Amount);
+
+		canShowUpgrades = energy.Amount >= minimunEnergyAmount;
+
+		//if(!canShowUpgrades)
+		//{
+		//	HideUI();
 		//}
 	}
 }

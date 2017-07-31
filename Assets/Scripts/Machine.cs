@@ -19,6 +19,8 @@ public class Machine : MonoBehaviour
 	public EntityRig entity;
 
 
+	public float minimunEnergyAmount = 3;
+
 	protected virtual void Awake()
 	{
 		energy = GetComponent<Energy>();

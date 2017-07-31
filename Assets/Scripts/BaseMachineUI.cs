@@ -19,6 +19,31 @@ public class BaseMachineUI : MonoBehaviour
 	}
 
 	public UpgradeType type;
+	public string text;
+
+	public float Value
+	{
+		get
+		{
+			return CurrentStats.Value;
+		}
+	}
+
+	public float Cost
+	{
+		get
+		{
+			return CurrentStats.Cost;
+		}
+	}
+
+	//public string Text
+	//{
+	//	get
+	//	{
+	//		return string.Format("{0}/nEnergy cost: {1}", text, CurrentStats.Cost);
+	//	}
+	//}
 
 	public bool IsUnique = false;
 	public UpgradeStats UniqueStat;

@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
 				break;
 		}
 		energy.Amount -= cost;
-		
+
 
 		if (statsUpdated)
 		{
@@ -234,22 +234,47 @@ public class PlayerController : MonoBehaviour
 		if (Physics.Raycast(ray, out hit, 10000, 1 << LayerMask.NameToLayer("3DUI")))
 		{
 			aimToGround = false;
+
+			BaseMachineUI upgrade = hit.collider.gameObject.GetComponent<BaseMachineUI>();
+
+			bool showValue = upgrade.type != BaseMachineUI.UpgradeType.BAIT && upgrade.type != BaseMachineUI.UpgradeType.TURRET;
+
+			UIManager.Instance.ShowUpgrade(upgrade.text, showValue, upgrade.Value, upgrade.Cost);
+
 		}
-		else if (Physics.Raycast(ray, out hit, 10000, 1 << LayerMask.NameToLayer("Ground")))
+		else
 		{
-			aimToGround = true;
-			point = hit.point;
+			UIManager.Instance.HideUpgrade();
 
-			point.y = transform.position.y;
-			Vector3 direction = (transform.position - point).normalized;
+			if (Physics.Raycast(ray, out hit, 10000, 1 << LayerMask.NameToLayer("Machine")))
+			{
+				Machine machine = hit.collider.gameObject.GetComponent<Machine>();
+				Energy machineEnergy = hit.collider.gameObject.GetComponent<Energy>();
 
-			transform.forward = -direction;
+				UIManager.Instance.ShowMachineEnergyInfo(machine, machineEnergy);
+			}
+			else
+			{
+				UIManager.Instance.HideMachineEnergyInfo();
+			}
+
+
+			if (Physics.Raycast(ray, out hit, 10000, 1 << LayerMask.NameToLayer("Ground")))
+			{
+				aimToGround = true;
+				point = hit.point;
+
+				point.y = transform.position.y;
+				Vector3 direction = (transform.position - point).normalized;
+
+				transform.forward = -direction;
+			}
 		}
 	}
 
 	void HandleShoot(bool shootButton)
 	{
-		if(!aimToGround)
+		if (!aimToGround)
 		{
 			return;
 		}
@@ -367,7 +392,7 @@ public class PlayerController : MonoBehaviour
 		shoot = false;
 		canShoot = false;
 
-		
+
 
 		anim.SetTrigger("Shoot");
 
