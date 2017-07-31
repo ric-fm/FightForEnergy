@@ -15,6 +15,8 @@ public class CasterEnemy : Enemy
 
 	public float shootSpeed;
 
+	GameObject currentTarget;
+
 	protected override void Start()
 	{
 		base.Start();
@@ -22,15 +24,15 @@ public class CasterEnemy : Enemy
 
 	public void Shoot()
 	{
-		GameObject target = GetTarget();
+		//GameObject target = GetTarget();
 
-		if (target != null)
+		if (currentTarget != null)
 		{
-			Debug.Log("shoot to " + target.name);
+			Debug.Log("shoot to " + currentTarget.name);
 
-			Vector3 shootDirection = (shootPoint.position - target.transform.position).normalized;
+			Vector3 shootDirection = (shootPoint.position - currentTarget.transform.position).normalized;
 
-			shootDirection = (transform.position - target.transform.position).normalized;
+			shootDirection = (transform.position - currentTarget.transform.position).normalized;
 
 			float shootAngle = -Mathf.Atan2(shootDirection.x, -shootDirection.z) * Mathf.Rad2Deg;
 
@@ -39,6 +41,19 @@ public class CasterEnemy : Enemy
 			EnemyBullet bullet = bulletGO.GetComponent<EnemyBullet>();
 
 			bullet.Shoot(shootDirection, shootSpeed);
+		}
+	}
+
+	private void LateUpdate()
+	{
+		currentTarget = GetTarget();
+		if (currentTarget != null)
+		{
+			transform.LookAt(currentTarget.transform);
+		}
+		else
+		{
+			Debug.Log("no target");
 		}
 	}
 }

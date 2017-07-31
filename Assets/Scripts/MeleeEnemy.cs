@@ -12,6 +12,8 @@ public class MeleeEnemy : Enemy
 {
 	public int damage = 1;
 
+	GameObject currentTarget;
+
 	protected override void Start()
 	{
 		base.Start();
@@ -19,10 +21,15 @@ public class MeleeEnemy : Enemy
 
 	public void Hit()
 	{
-		GameObject target = GetTarget();
+		//GameObject target = GetTarget();
 
-		Debug.Log("Hit on " + target.name);
-		StealEnergy(target);
+		Debug.Log("Hit on " + currentTarget.name);
+
+		if (currentTarget != null)
+		{
+
+		}
+		StealEnergy(currentTarget);
 	}
 
 	void StealEnergy(GameObject target)
@@ -30,6 +37,19 @@ public class MeleeEnemy : Enemy
 		Energy energy = target.GetComponent<Energy>();
 
 		energy.Steal(damage, 1);
+	}
+
+	private void LateUpdate()
+	{
+		currentTarget = GetTarget();
+		if (currentTarget != null)
+		{
+			transform.LookAt(currentTarget.transform);
+		}
+		else
+		{
+			Debug.Log("no target");
+		}
 	}
 
 }
