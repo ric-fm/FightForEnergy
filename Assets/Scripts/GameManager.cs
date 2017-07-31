@@ -6,6 +6,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 public class GameManager : MonoBehaviour
 {
 	static GameManager instance;
@@ -27,7 +29,48 @@ public class GameManager : MonoBehaviour
 	private void Start()
 	{
 		playerController = FindObjectOfType<PlayerController>();
+
+		StartTimer();
 	}
+
+	public bool timerOn = false;
+	public float timer;
+
+	private void Update()
+	{
+		if (timerOn == true)
+		{
+			timer += Time.deltaTime;
+		}
+
+		if(Input.GetKeyDown(KeyCode.R))
+		{
+			GameOver();
+		}
+	}
+
+	public void StartTimer()
+	{
+		timer = 0.0f;
+		timerOn = true;
+	}
+
+	public void PauseTimer()
+	{
+		timerOn = false;
+	}
+
+	public void ResumeTimer()
+	{
+		timerOn = true;
+	}
+
+	public void ResetTimer()
+	{
+		timerOn = false;
+		timer = 0.0f;
+	}
+
 
 	Vector3 cursorPosition;
 	public Vector3 CursorPosition
@@ -86,11 +129,29 @@ public class GameManager : MonoBehaviour
 
 	public event EnemyEvent OnEnemyDestroyed;
 
+	public int EnemiesDestroyedCount = 0;
+
 	public void NotifyEnemyDestroyed(Enemy enemy)
 	{
+		++EnemiesDestroyedCount;
 		if(OnEnemyDestroyed != null)
 		{
 			OnEnemyDestroyed(enemy);
 		}
 	}
+
+	public void GameOver()
+	{
+		PauseTimer();
+
+		UIManager.Instance.ShowGameOver();
+		Time.timeScale = 0.0f;
+	}
+
+	public void Restart()
+	{
+		Time.timeScale = 1.0f;
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+	}
+
 }

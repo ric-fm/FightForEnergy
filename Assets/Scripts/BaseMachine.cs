@@ -101,6 +101,11 @@ public class BaseMachine : Machine
 
 		canShowUpgrades = energy.Amount >= minimunEnergyAmount;
 
+		if(energy.Amount == 0)
+		{
+			GameManager.Instance.GameOver();
+		}
+
 		//if(!canShowUpgrades)
 		//{
 		//	HideUI();

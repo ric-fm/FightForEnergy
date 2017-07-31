@@ -36,6 +36,14 @@ public class UIManager : MonoBehaviour
 	public GameObject machineOnText;
 	public GameObject machineOffText;
 
+
+	public GameObject GameOverPanel;
+
+	public Text GameOverTimerText;
+
+	public Text TimerValueText;
+	public Text EnemyDestroyedText;
+
 	public void SetPlayerEnergy(int energy, int maxEnergy)
 	{
 		float energyPercent = (float)energy / (float)maxEnergy;
@@ -89,6 +97,23 @@ public class UIManager : MonoBehaviour
 	{
 		MachinePanel.SetActive(false);
 		MachineEnergyText.text = "";
+	}
+
+	public void ShowGameOver()
+	{
+		
+		EnemyDestroyedText.text = GameManager.Instance.EnemiesDestroyedCount.ToString();
+
+		float timer = GameManager.Instance.timer;
+		GameOverTimerText.text = string.Format("{0}:{1}", Mathf.Floor(timer / 60).ToString("00"), (timer % 60).ToString("00"));
+
+		GameOverPanel.SetActive(true);
+	}
+
+	private void Update()
+	{
+		float timer = GameManager.Instance.timer;
+		TimerValueText.text = string.Format("{0}:{1}", Mathf.Floor(timer / 60).ToString("00"), (timer % 60).ToString("00"));
 	}
 
 }
