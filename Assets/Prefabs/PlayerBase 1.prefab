@@ -253,26 +253,26 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1441876147759328}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -23.39, y: 1.27, z: -0.03}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
+  m_LocalPosition: {x: -35, y: 10, z: 25}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 4559220591462454}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 180}
 --- !u!4 &4260058396196928
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1398943819451094}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 26.650003, y: 1.1849053, z: -0.030897168}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
+  m_LocalPosition: {x: 25, y: 10, z: 15}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 4559220591462454}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 180}
 --- !u!4 &4268838999777510
 Transform:
   m_ObjectHideFlags: 1
@@ -294,13 +294,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1100174105991952}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -23.12, y: -9.98, z: -0.03}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
+  m_LocalPosition: {x: 35, y: 10, z: 25}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 4559220591462454}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 180}
 --- !u!4 &4476976825299176
 Transform:
   m_ObjectHideFlags: 1
@@ -339,26 +339,26 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1588178897094422}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.689997, y: -10.290007, z: -0.029998807}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
+  m_LocalPosition: {x: -25, y: 10, z: 15}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 4559220591462454}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 180}
 --- !u!4 &4658974159249710
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1191515493549156}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.46, y: 0.69, z: -0.03}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
+  m_LocalPosition: {x: -45, y: 10, z: 15}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 4559220591462454}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 180}
 --- !u!4 &4670178949747906
 Transform:
   m_ObjectHideFlags: 1
@@ -391,13 +391,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1968754220387826}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 26.8, y: -9.3, z: -0.03}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
+  m_LocalPosition: {x: 45, y: 10, z: 15}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 4559220591462454}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 180}
 --- !u!23 &23005971748865072
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -411,7 +411,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 64e2a18b559513448be272cfa9b5fb18, type: 2}
+  - {fileID: 2100000, guid: 0ce90adfb49d5fe42b88c336a5558631, type: 2}
   - {fileID: 2100000, guid: 3afe2e62b5447204580c987f8586e9e9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -444,7 +444,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 64e2a18b559513448be272cfa9b5fb18, type: 2}
+  - {fileID: 2100000, guid: 0ce90adfb49d5fe42b88c336a5558631, type: 2}
   - {fileID: 2100000, guid: 345cf7e2f570cee438e6086f59f43dcf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -477,7 +477,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 64e2a18b559513448be272cfa9b5fb18, type: 2}
+  - {fileID: 2100000, guid: 3a8aef364aca96748bae8887c0986575, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -509,7 +509,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 64e2a18b559513448be272cfa9b5fb18, type: 2}
+  - {fileID: 2100000, guid: 0ce90adfb49d5fe42b88c336a5558631, type: 2}
   - {fileID: 2100000, guid: ddec823f89a9e1b4c9dadbafccc8f832, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -542,7 +542,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 64e2a18b559513448be272cfa9b5fb18, type: 2}
+  - {fileID: 2100000, guid: 0ce90adfb49d5fe42b88c336a5558631, type: 2}
   - {fileID: 2100000, guid: d26fadbd21112114a9128bd459d21f04, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -575,7 +575,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 64e2a18b559513448be272cfa9b5fb18, type: 2}
+  - {fileID: 2100000, guid: 0ce90adfb49d5fe42b88c336a5558631, type: 2}
   - {fileID: 2100000, guid: 1f96710c8e78d3842b26663b7be4a2f9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -608,7 +608,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 64e2a18b559513448be272cfa9b5fb18, type: 2}
+  - {fileID: 2100000, guid: 0ce90adfb49d5fe42b88c336a5558631, type: 2}
   - {fileID: 2100000, guid: 97bd28e002b54524d82856a063a98d60, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -714,8 +714,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6.6111016, y: 4.0519557, z: 9.016936}
-  m_Center: {x: -0.2053999, y: -0.6124026, z: 4.481776}
+  m_Size: {x: 4.7786856, y: 2.4557931, z: 9.016936}
+  m_Center: {x: -0.036431663, y: 0.18567899, z: 4.481776}
 --- !u!95 &95079158670363374
 Animator:
   serializedVersion: 3
@@ -847,6 +847,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 5
+  text: BAIT
   IsUnique: 1
   UniqueStat:
     Value: 0
@@ -865,7 +866,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c3e61c895a95a4487363bc7aa54fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entity: {fileID: 0}
+  entity: {fileID: 114326735190858232}
+  minimunEnergyAmount: 3
   UIS: {fileID: 1649036247528768}
 --- !u!114 &114166435740790214
 MonoBehaviour:
@@ -879,6 +881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  text: ENERGY STEAL
   IsUnique: 0
   UniqueStat:
     Value: 0
@@ -904,6 +907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
+  text: RANGE
   IsUnique: 0
   UniqueStat:
     Value: 0
@@ -958,6 +962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  text: CAPACITY
   IsUnique: 0
   UniqueStat:
     Value: 0
@@ -983,6 +988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 4
+  text: TURRET
   IsUnique: 1
   UniqueStat:
     Value: 0
@@ -1029,6 +1035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+  text: ENERGY TRANFER
   IsUnique: 0
   UniqueStat:
     Value: 0
@@ -1053,7 +1060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb46fc665a0a0d74d919961e0733367f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 0
+  amount: 10
   MaxAmount: 20
   CanSteal: 1
   CanReceive: 1

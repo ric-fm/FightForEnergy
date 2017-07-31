@@ -108,12 +108,6 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &40480672 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114326735190858232, guid: 7ffa0dc03f4dad446b6cc9c0d6154fea,
-    type: 2}
-  m_PrefabInternal: {fileID: 1230248469}
-  m_Script: {fileID: 220721487, guid: 9fa2ecd1ff2ad394281dd3bf72c5b76e, type: 3}
 --- !u!1 &55169783
 GameObject:
   m_ObjectHideFlags: 0
@@ -3531,93 +3525,6 @@ Prefab:
     - target: {fileID: 1593824911092222, guid: 7ffa0dc03f4dad446b6cc9c0d6154fea, type: 2}
       propertyPath: m_Name
       value: PlayerBase
-      objectReference: {fileID: 0}
-    - target: {fileID: 114234648223535120, guid: 7ffa0dc03f4dad446b6cc9c0d6154fea,
-        type: 2}
-      propertyPath: text
-      value: RANGE
-      objectReference: {fileID: 0}
-    - target: {fileID: 114327481266402114, guid: 7ffa0dc03f4dad446b6cc9c0d6154fea,
-        type: 2}
-      propertyPath: text
-      value: CAPACITY
-      objectReference: {fileID: 0}
-    - target: {fileID: 114941147322063674, guid: 7ffa0dc03f4dad446b6cc9c0d6154fea,
-        type: 2}
-      propertyPath: text
-      value: ENERGY TRANFER
-      objectReference: {fileID: 0}
-    - target: {fileID: 114166435740790214, guid: 7ffa0dc03f4dad446b6cc9c0d6154fea,
-        type: 2}
-      propertyPath: text
-      value: ENERGY STEAL
-      objectReference: {fileID: 0}
-    - target: {fileID: 114001947203023524, guid: 7ffa0dc03f4dad446b6cc9c0d6154fea,
-        type: 2}
-      propertyPath: text
-      value: BAIT
-      objectReference: {fileID: 0}
-    - target: {fileID: 114663660883629526, guid: 7ffa0dc03f4dad446b6cc9c0d6154fea,
-        type: 2}
-      propertyPath: text
-      value: TURRET
-      objectReference: {fileID: 0}
-    - target: {fileID: 4415561072352478, guid: 7ffa0dc03f4dad446b6cc9c0d6154fea, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -34.46
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103201266198594, guid: 7ffa0dc03f4dad446b6cc9c0d6154fea, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -34.730003
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103201266198594, guid: 7ffa0dc03f4dad446b6cc9c0d6154fea, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1.2700009
-      objectReference: {fileID: 0}
-    - target: {fileID: 114008118107553130, guid: 7ffa0dc03f4dad446b6cc9c0d6154fea,
-        type: 2}
-      propertyPath: entity
-      value: 
-      objectReference: {fileID: 40480672}
-    - target: {fileID: 114008118107553130, guid: 7ffa0dc03f4dad446b6cc9c0d6154fea,
-        type: 2}
-      propertyPath: minimunEnergyAmount
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 23203919581192868, guid: 7ffa0dc03f4dad446b6cc9c0d6154fea,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3a8aef364aca96748bae8887c0986575, type: 2}
-    - target: {fileID: 65656141167138482, guid: 7ffa0dc03f4dad446b6cc9c0d6154fea,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 2.4557931
-      objectReference: {fileID: 0}
-    - target: {fileID: 65656141167138482, guid: 7ffa0dc03f4dad446b6cc9c0d6154fea,
-        type: 2}
-      propertyPath: m_Center.x
-      value: -0.036431663
-      objectReference: {fileID: 0}
-    - target: {fileID: 65656141167138482, guid: 7ffa0dc03f4dad446b6cc9c0d6154fea,
-        type: 2}
-      propertyPath: m_Center.y
-      value: 0.18567899
-      objectReference: {fileID: 0}
-    - target: {fileID: 65656141167138482, guid: 7ffa0dc03f4dad446b6cc9c0d6154fea,
-        type: 2}
-      propertyPath: m_Center.z
-      value: 4.481776
-      objectReference: {fileID: 0}
-    - target: {fileID: 65656141167138482, guid: 7ffa0dc03f4dad446b6cc9c0d6154fea,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 4.7786856
-      objectReference: {fileID: 0}
-    - target: {fileID: 114954529173722798, guid: 7ffa0dc03f4dad446b6cc9c0d6154fea,
-        type: 2}
-      propertyPath: amount
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7ffa0dc03f4dad446b6cc9c0d6154fea, type: 2}

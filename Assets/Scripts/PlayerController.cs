@@ -156,7 +156,7 @@ public class PlayerController : MonoBehaviour
 
 	void SetTarget(GameObject target)
 	{
-		if (shooting)
+		if (shooting && !backing)
 		{
 			targetHitEnergy = target.GetComponent<Energy>();
 
@@ -397,24 +397,34 @@ public class PlayerController : MonoBehaviour
 	}
 
 	bool shooting;
+	bool backing;
 	private void LateUpdate()
 	{
 		if (shooting)
 		{
-			//if(!backing)
-			//{ }
+
 			if (targetHitEnergy != null)
 			{
-				shootGO.transform.position = targetHitEnergy.transform.position;
+				float posY = shootGO.transform.position.y;
+				//shootGO.transform.position = targetHitEnergy.transform.position;
+				shootGO.transform.position = new Vector3(targetHitEnergy.transform.position.x, shootGO.transform.position.y, targetHitEnergy.transform.position.z);
 				hand.transform.localPosition = Vector3.zero;
 
-				Vector3 targetDirection = (hand.transform.position - targetHitEnergy.transform.position).normalized;
-				hand.transform.right = -targetDirection;
+
+				Vector3 pos1 = shootGO.transform.position;
+				pos1.y = 0;
+				Vector3 pos2 = targetHitEnergy.transform.position;
+				pos2.y = 0;
+				Vector3 targetDirection = (pos1 - pos2).normalized;
+				//targetDirection.y = 0;
+				hand.transform.right = targetDirection;
+				hand.transform.LookAt(pos2);
 
 			}
 			else
 			{
-				hand.transform.localPosition = Vector3.zero;
+				//hand.transform.localPosition = Vector3.zero;
+				//hand.transform.localPosition = new Vector3(0.0f, hand.transform.localPosition.y, 0.0f);
 				hand.transform.right = -shootDirection;
 			}
 		}
@@ -475,6 +485,7 @@ public class PlayerController : MonoBehaviour
 
 	IEnumerator HandBackAnimation()
 	{
+		backing = true;
 		shootGO.transform.SetParent(transform);
 
 		while (true)
@@ -495,6 +506,7 @@ public class PlayerController : MonoBehaviour
 		ClearTargetHit();
 		canShoot = true;
 		shooting = false;
+		backing = false;
 		hand.transform.SetParent(handParentTransform);
 	}
 	#endregion
