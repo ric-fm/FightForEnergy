@@ -133,6 +133,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
+  damage: 1
+  PlayerHitSound: {fileID: 8300000, guid: cec2c1ef63d89fa49958bdac1a83c550, type: 3}
+  MachineHitSound: {fileID: 8300000, guid: e1dcf2f936dde2f4089886e4cf2cfb87, type: 3}
 --- !u!135 &135425443313464964
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -15,6 +15,9 @@ public class EnemyBullet : MonoBehaviour
 
 	public int damage = 1;
 
+	public AudioClip PlayerHitSound;
+	public AudioClip MachineHitSound;
+
 	void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
@@ -42,6 +45,18 @@ public class EnemyBullet : MonoBehaviour
 	{
 		Energy energy = target.GetComponent<Energy>();
 
-		energy.Steal(damage, 1);
+		if (energy.CanSteal)
+		{
+			if (target.tag == "Player")
+			{
+				SoundManager.Instance.PlaySingleAtLocation(PlayerHitSound, target.transform.position);
+			}
+			else
+			{
+				SoundManager.Instance.PlaySingleAtLocation(MachineHitSound, target.transform.position);
+			}
+
+			energy.Steal(damage, 1);
+		}
 	}
 }

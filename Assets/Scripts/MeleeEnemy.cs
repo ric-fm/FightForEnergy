@@ -43,11 +43,11 @@ public class MeleeEnemy : Enemy
 		{
 			if (target.tag == "Player")
 			{
-				SoundManager.Instance.PlaySingleAtLocation(PlayerHitSound, currentTarget.transform.position);
+				SoundManager.Instance.PlaySingleAtLocation(PlayerHitSound, target.transform.position);
 			}
 			else
 			{
-				SoundManager.Instance.PlaySingleAtLocation(MachineHitSound, currentTarget.transform.position);
+				SoundManager.Instance.PlaySingleAtLocation(MachineHitSound, target.transform.position);
 			}
 
 			energy.Steal(damage, 1);

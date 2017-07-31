@@ -556,6 +556,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ai: {fileID: 114178044686249952}
   damage: 1
+  PlayerHitSound: {fileID: 8300000, guid: cec2c1ef63d89fa49958bdac1a83c550, type: 3}
+  MachineHitSound: {fileID: 8300000, guid: e1dcf2f936dde2f4089886e4cf2cfb87, type: 3}
 --- !u!136 &136460726439009206
 CapsuleCollider:
   m_ObjectHideFlags: 1
