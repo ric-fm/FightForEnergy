@@ -15,15 +15,23 @@ public class BaseMachine : Machine
 
 	bool canShowUpgrades = true;
 
-	
+	MeshRenderer meshRenderer;
 
 	protected override void Start()
 	{
 		base.Start();
 
+		meshRenderer = GetComponent<MeshRenderer>();
+
 		canShowUpgrades = energy.Amount >= minimunEnergyAmount;
 
 		HideUI();
+	}
+
+	void SetAlpha(float value)
+	{
+		//float newAlpha = Mathf.Lerp(renderer.material.color.a, 0F, Time.deltaTime * fadeLerpConstant);
+		meshRenderer.material.color = new Color(meshRenderer.material.color.r, meshRenderer.material.color.g, meshRenderer.material.color.b, value);
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -35,6 +43,8 @@ public class BaseMachine : Machine
 			//{
 			//	ShowUI();
 			//}
+
+			SetAlpha(0.5f);
 		}
 	}
 
@@ -44,6 +54,9 @@ public class BaseMachine : Machine
 		{
 			playerIn = false;
 			//HideUI();
+
+			//SetAlpha(1.0f);
+
 		}
 	}
 
