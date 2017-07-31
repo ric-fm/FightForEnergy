@@ -10,16 +10,16 @@ public class Enemy : MonoBehaviour
 {
 	public delegate void EnemyEvent(Enemy enemy);
 
-	Energy energy;
+	protected Energy energy;
 
 	public event EnemyEvent OnEnemyDestroyed;
 
-	void Start () {
+	protected virtual void Start () {
 		energy = GetComponent<Energy>();
 		energy.OnEnergyChanged += OnEnergyChanged;
 	}
 
-	void OnEnergyChanged(Energy energy)
+	protected virtual void OnEnergyChanged(Energy energy)
 	{
 		if(!energy.HasEnergy)
 		{
@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
 		}
 	}
 	
-	void NotifyDestroyed()
+	protected void NotifyDestroyed()
 	{
 		if(OnEnemyDestroyed != null)
 		{
