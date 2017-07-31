@@ -103,8 +103,6 @@ public class PlayerController : MonoBehaviour
 				break;
 
 			case BaseMachineUI.UpgradeType.BAIT:
-				Debug.Log("Spawn bait");
-
 				spawnMachine.machineTemplate = baitMachineTemplate;
 
 				CurrentState = PlayerState.SPAWNING;
@@ -113,7 +111,6 @@ public class PlayerController : MonoBehaviour
 				break;
 
 			case BaseMachineUI.UpgradeType.TURRET:
-				Debug.Log("Spawn turret");
 				spawnMachine.machineTemplate = turretMachineTemplate;
 
 				CurrentState = PlayerState.SPAWNING;
@@ -133,21 +130,14 @@ public class PlayerController : MonoBehaviour
 
 	void OnStatsUpdated()
 	{
+		SoundManager.Instance.PlaySingleAtLocation(UpgradeSound, Camera.main.transform.position);
+
 		energy.MaxAmount = (int)CurrentStats.ChargeCapacity;
 		UpdateEnergyUI();
-		Debug.Log("Stats updated");
-	}
-
-	void ShowStats()
-	{
-		Debug.Log("Stats: " + CurrentStats);
-
-
 	}
 
 	void EnergyChanged(Energy energy)
 	{
-		Debug.Log("Energy of player changed");
 		UpdateEnergyUI();
 	}
 
@@ -155,6 +145,8 @@ public class PlayerController : MonoBehaviour
 	{
 		UIManager.Instance.SetPlayerEnergy(energy.Amount, energy.MaxAmount);
 	}
+
+
 
 	void SetTarget(GameObject target)
 	{
@@ -172,10 +164,15 @@ public class PlayerController : MonoBehaviour
 				{
 					case "Enemy":
 						targetHitEnergy.GetComponent<Enemy>().OnEnemyDestroyed += OnEnemyDestroyed;
+
+						SoundManager.Instance.PlaySingleAtLocation(PlugEnemySound, targetHitEnergy.transform.position);
 						break;
 
 					case "Machine":
 						targetHitEnergy.GetComponent<Machine>().OnMachineEnergyFilled += OnMachineEnergyFilled;
+
+						SoundManager.Instance.PlaySingleAtLocation(PlugMachineSound, targetHitEnergy.transform.position);
+
 						break;
 				}
 			}
@@ -223,6 +220,17 @@ public class PlayerController : MonoBehaviour
 	bool aimToGround;
 
 	#region Player Mechanics
+
+	bool lastUpgradeSelect = false;
+	public AudioClip SelectSound;
+	public AudioClip DeselectSound;
+
+	public AudioClip ShootSound;
+	public AudioClip PlugEnemySound;
+	public AudioClip PlugMachineSound;
+
+	public AudioClip UpgradeSound;
+
 	void Aim()
 	{
 		// Apuntado
@@ -241,9 +249,20 @@ public class PlayerController : MonoBehaviour
 
 			UIManager.Instance.ShowUpgrade(upgrade.text, showValue, upgrade.Value, upgrade.Cost);
 
+			if (!lastUpgradeSelect)
+			{
+				SoundManager.Instance.PlaySingleAtLocation(SelectSound, Camera.main.transform.position);
+				lastUpgradeSelect = true;
+			}
 		}
 		else
 		{
+			if (lastUpgradeSelect)
+			{
+				SoundManager.Instance.PlaySingleAtLocation(DeselectSound, Camera.main.transform.position);
+
+				lastUpgradeSelect = false;
+			}
 			UIManager.Instance.HideUpgrade();
 
 			if (Physics.Raycast(ray, out hit, 10000, 1 << LayerMask.NameToLayer("Machine")))
@@ -398,6 +417,8 @@ public class PlayerController : MonoBehaviour
 
 		yield return new WaitForSeconds(0.2f);
 		shooting = true;
+
+		SoundManager.Instance.PlaySingleAtLocation(ShootSound, /*Camera.main.*/transform.position);
 
 		shootDirection = direction;
 		shootTargetPoint = handPoint.transform.position + shootDirection * CurrentStats.Range * Time.deltaTime;

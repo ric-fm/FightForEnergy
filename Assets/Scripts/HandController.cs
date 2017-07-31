@@ -12,6 +12,8 @@ public class HandController : MonoBehaviour
 
 	public event HandEvent OnHitTarget;
 
+
+
 	private void OnTriggerEnter(Collider other)
 	{
 		NotifyHitTarget(other.gameObject);

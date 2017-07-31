@@ -61,7 +61,7 @@ public class Spawner : MonoBehaviour
 		{
 			if (IsCustomWave())
 				{
-				Debug.Log("Custom spawn");
+				//Debug.Log("Custom spawn");
 				CustomWave customWave = customWaves[currentWave];
 
 				foreach(CustomSpawn customSpawn in customWave.spaws)
@@ -72,7 +72,7 @@ public class Spawner : MonoBehaviour
 					{
 						while(!CanSpawn())
 						{
-							Debug.Log("Max Reached");
+							//Debug.Log("Max Reached");
 							yield return new WaitForSeconds(waitTimeForCheckMaxEnemies);
 						}
 						float randX = Random.Range(transform.position.x - range, transform.position.x + range);
@@ -96,7 +96,7 @@ public class Spawner : MonoBehaviour
 				{
 					yield return new WaitForSeconds(waitTimeForCheckMaxEnemies);
 				}
-				Debug.Log("Progresive spawn");
+				//Debug.Log("Progresive spawn");
 
 				float randValue = Random.Range(0.0f, 1.0f);
 				float randX = Random.Range(transform.position.x - range, transform.position.x + range);

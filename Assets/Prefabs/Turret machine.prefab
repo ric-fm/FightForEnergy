@@ -469,6 +469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 114851865626650138}
+  minimunEnergyAmount: 3
   target: {fileID: 0}
   Cannon: {fileID: 4359811765987488}
   shootPoint: {fileID: 4880257648349718}
@@ -478,6 +479,7 @@ MonoBehaviour:
   missileTemplate: {fileID: 1235031061803072, guid: 8b82c1728411deb4d98d1f72b6c9ed51,
     type: 2}
   ai: {fileID: 114126935049928236}
+  ShootSound: {fileID: 8300000, guid: a7d8b26ff6e65bb409c4ae7fd06117a8, type: 3}
 --- !u!114 &114851865626650138
 MonoBehaviour:
   m_ObjectHideFlags: 1

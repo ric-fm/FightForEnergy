@@ -33,6 +33,8 @@ public class TurretMachine : Machine
 
 	Animator anim;
 
+	public AudioClip ShootSound;
+
 	protected override void Awake()
 	{
 		base.Awake();
@@ -88,6 +90,9 @@ public class TurretMachine : Machine
 		Missile missile = missileGO.GetComponent<Missile>();
 
 		missile.Shoot(-shootDirection, shootSpeed);
+
+		SoundManager.Instance.PlaySingleAtLocation(ShootSound, transform.position);
+
 		StartCoroutine(CoolDown());
 	}
 
