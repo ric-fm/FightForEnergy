@@ -126,9 +126,9 @@ public class Spawner : MonoBehaviour
 
 	void Spawn(SpawnStats spawnStat, Vector3 position)
 	{
-		//GameObject spawnEntityGO = GameObject.Instantiate(spawnStat.spawnTemplate, position, Quaternion.identity);
-		GameObject spawnEntityGO = new GameObject(spawnStat.spawnTemplate.name);
-		spawnEntityGO.transform.SetParent(transform, true);
+		GameObject spawnEntityGO = GameObject.Instantiate(spawnStat.spawnTemplate, position, Quaternion.identity);
+		//GameObject spawnEntityGO = new GameObject(spawnStat.spawnTemplate.name);
+		//spawnEntityGO.transform.SetParent(transform, true);
 
 		spawnStat.spawnedEntities.Add(spawnEntityGO);
 
