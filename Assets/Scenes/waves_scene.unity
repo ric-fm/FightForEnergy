@@ -144,7 +144,7 @@ MonoBehaviour:
     spawnedEntities: []
     rate: 3
     probability: 2
-    interval: 1
+    interval: 5
   range: 0
   currentWave: 0
   difficultyMultiplier: 1
@@ -353,7 +353,7 @@ Prefab:
     - target: {fileID: 114909201648884156, guid: 479c27c2861b5634a891dab201e91ff7,
         type: 2}
       propertyPath: _serializer._serializedMetaDocument
-      value: <meta><element0><key>/component/_ai+_selected</key><value type="System.Int32">2</value></element0></meta>
+      value: <meta><element0><key>/component/_ai+_selected</key><value type="System.Int32">5</value></element0></meta>
       objectReference: {fileID: 0}
     - target: {fileID: 114909201648884156, guid: 479c27c2861b5634a891dab201e91ff7,
         type: 2}
@@ -1268,7 +1268,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4789446589670266, guid: a760e25fad665504c9181f3bbe72e9b1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 19.94
+      value: 68.1
       objectReference: {fileID: 0}
     - target: {fileID: 4789446589670266, guid: a760e25fad665504c9181f3bbe72e9b1, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1276,7 +1276,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4789446589670266, guid: a760e25fad665504c9181f3bbe72e9b1, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 20.18
+      value: 56.3
       objectReference: {fileID: 0}
     - target: {fileID: 4789446589670266, guid: a760e25fad665504c9181f3bbe72e9b1, type: 2}
       propertyPath: m_LocalRotation.x

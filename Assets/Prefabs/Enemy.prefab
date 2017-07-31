@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 114478754578486164}
   - component: {fileID: 114599985879045120}
   - component: {fileID: 54877172946011056}
+  - component: {fileID: 114488678838164536}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Enemy
@@ -416,6 +417,18 @@ MonoBehaviour:
   CanReceive: 1
   stealCoolDown: 1
   receiveCoolDown: 0
+--- !u!114 &114488678838164536
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1123933613299760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2faa8e84246820d45999ba4584ea95e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ai: {fileID: 114909201648884156}
 --- !u!114 &114599985879045120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -461,7 +474,7 @@ MonoBehaviour:
       type="RAIN.Navigation.BasicNavigator" reference="10"><_drawPaths>False</_drawPaths><_pathColor>0,0.6,0,1</_pathColor><_outlineColorOffset>-0.5</_outlineColorOffset><_maxPathfindingSteps>100</_maxPathfindingSteps><_maxPathLength>0</_maxPathLength><_padding>0</_padding><_graphTags></_graphTags></_navigator><_senses
       type="RAIN.Perception.BasicSenses" reference="11"><_sensors><element0 type="RAIN.Perception.Sensors.VisualSensor"
       reference="12"><_showVisual>True</_showVisual><_sensorName>Sight</_sensorName><_isActive>True</_isActive><_sensorColor>0,0,0.6,1</_sensorColor><_mountPoint
-      sceneobject="db3b8997-b78d-429b-99c1-5e3783c23ad0" component="0"></_mountPoint><_positionOffset>0,0,0</_positionOffset><_angleOffset>0,0,0</_angleOffset><_filters></_filters><_range>10</_range><_canDetectSelf>False</_canDetectSelf><_horizontalAngle>360</_horizontalAngle><_verticalAngle>180</_verticalAngle><_lineOfSight>False</_lineOfSight><_lineOfSightMask>-5</_lineOfSightMask></element0></_sensors></_senses><_customElements></_customElements></_ai></component>
+      sceneobject="db3b8997-b78d-429b-99c1-5e3783c23ad0" component="0"></_mountPoint><_positionOffset>0,0,0</_positionOffset><_angleOffset>0,0,0</_angleOffset><_filters></_filters><_range>20</_range><_canDetectSelf>False</_canDetectSelf><_horizontalAngle>360</_horizontalAngle><_verticalAngle>180</_verticalAngle><_lineOfSight>False</_lineOfSight><_lineOfSightMask>-5</_lineOfSightMask></element0></_sensors></_senses><_customElements></_customElements></_ai></component>
     _serializedMetaDocument: <meta><element0><key>/component/_ai+_selected</key><value
       type="System.Int32">5</value></element0></meta>
     _serializedObjects:
