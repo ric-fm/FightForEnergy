@@ -3,12 +3,15 @@
 */
 
 
+using RAIN.Core;
+using RAIN.Entities;
+using RAIN.Memory;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class TurretMachine : Machine
 {
-	public Enemy target;
+	public GameObject target;
 
 	public Transform Cannon;
 	public Transform shootPoint;
@@ -24,20 +27,37 @@ public class TurretMachine : Machine
 	Vector3 shootDirection;
 	float shootAngle;
 
+	public AIRig ai;
+
+	bool isRunning;
+
+	Animator anim;
+
+	protected override void Awake()
+	{
+		base.Awake();
+
+		anim = GetComponent<Animator>();
+	}
+
 	protected override void Start()
 	{
 		base.Start();
-
-		StartCoroutine(CoolDown());
 	}
 
 	void Update()
 	{
-		Aim();
-
-		if (canShoot && target != null && CannonReady())
+		if (isRunning)
 		{
-			Shoot();
+
+			Aim();
+
+			target = GetTarget();
+
+			if (canShoot && target != null && CannonReady())
+			{
+				Shoot();
+			}
 		}
 	}
 
@@ -61,11 +81,13 @@ public class TurretMachine : Machine
 
 	void Shoot()
 	{
-		GameObject missileGO = Instantiate(missileTemplate, shootPoint.position, Quaternion.Euler(0.0f, shootAngle, 0.0f));
+		GameObject missileGO = Instantiate(missileTemplate, shootPoint.position, Quaternion.Euler(0.0f, 0.0f, shootAngle));
+
+		missileGO.transform.forward = -shootDirection;
 
 		Missile missile = missileGO.GetComponent<Missile>();
 
-		missile.Shoot(shootDirection, shootSpeed);
+		missile.Shoot(-shootDirection, shootSpeed);
 		StartCoroutine(CoolDown());
 	}
 
@@ -76,5 +98,61 @@ public class TurretMachine : Machine
 		yield return new WaitForSeconds(coolDownInterval);
 
 		canShoot = true;
+	}
+
+	public GameObject GetTarget()
+	{
+		AI ai2 = ai.AI;
+
+		RAINMemory memory = ai2.WorkingMemory;
+
+		object obj = memory.GetItem("target");
+
+		if (obj != null)
+		{
+			return (GameObject)obj;
+		}
+
+		return null;
+	}
+
+
+	public void On()
+	{
+		isRunning = true;
+		AddEntity();
+
+		anim.SetBool("IsOn", true);
+
+		StartCoroutine(CoolDown());
+
+	}
+
+	public void Off()
+	{
+		isRunning = false;
+		RemoveEntity();
+
+		anim.SetBool("IsOn", true);
+		StopAllCoroutines();
+	}
+
+	public override void CheckOn()
+	{
+		if (!energy.HasEnergy && isRunning)
+		{
+			Off();
+		}
+		else if (energy.HasEnergy && !isRunning)
+		{
+			On();
+		}
+	}
+
+	protected override void OnEnergyChanged(Energy energy)
+	{
+		base.OnEnergyChanged(energy);
+
+		CheckOn();
 	}
 }
