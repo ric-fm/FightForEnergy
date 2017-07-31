@@ -2707,6 +2707,7 @@ GameObject:
   - component: {fileID: 1519718898}
   - component: {fileID: 1519718897}
   - component: {fileID: 1519718899}
+  - component: {fileID: 1519718900}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -2725,7 +2726,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd23a125877c7e5418e40e8c8b7f2396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerEnergyText: {fileID: 0}
   energyBar: {fileID: 927079763}
 --- !u!4 &1519718898
 Transform:
@@ -2752,6 +2752,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GridTileSize: 2
+--- !u!114 &1519718900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1519718896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 587c941c3f06f724faf4023bb6fa2ce4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceGOTemplate: {fileID: 1553415679978008, guid: 9fba5ef61fecf2543bfdfcd634c1e775,
+    type: 2}
 --- !u!1 &1540596667
 GameObject:
   m_ObjectHideFlags: 1
