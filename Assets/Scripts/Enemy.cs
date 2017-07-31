@@ -3,6 +3,8 @@
 */
 
 
+using RAIN.Core;
+using RAIN.Memory;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +15,24 @@ public class Enemy : MonoBehaviour
 	protected Energy energy;
 
 	public event EnemyEvent OnEnemyDestroyed;
+
+	public AIRig ai;
+
+	public GameObject GetTarget()
+	{
+		AI ai2 = ai.AI;
+
+		RAINMemory memory = ai2.WorkingMemory;
+
+		object obj = memory.GetItem("attacktarget");
+
+		if (obj != null)
+		{
+			return (GameObject)obj;
+		}
+
+		return null;
+	}
 
 	protected virtual void Start () {
 		energy = GetComponent<Energy>();

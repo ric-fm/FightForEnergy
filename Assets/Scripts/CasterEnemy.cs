@@ -3,23 +3,23 @@
 */
 
 
-using RAIN.Core;
-using RAIN.Memory;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class MeleeEnemy : Enemy
+public class CasterEnemy : Enemy
 {
+
+	public Transform shootPoint;
+
 	protected override void Start()
 	{
 		base.Start();
 	}
 
-	public void Hit()
+	public void Shoot()
 	{
 		GameObject target = GetTarget();
 
-		Debug.Log("Hit on " + target.name);
+		Debug.Log("shoot to " + target.name);
 	}
-
 }
