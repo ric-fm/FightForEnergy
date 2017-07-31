@@ -13,6 +13,8 @@ public class EnemyBullet : MonoBehaviour
 
 	Rigidbody rb;
 
+	public int damage = 1;
+
 	void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
@@ -29,11 +31,19 @@ public class EnemyBullet : MonoBehaviour
 	private void OnCollisionEnter(Collision collision)
 	{
 		Debug.Log("collision with " + collision.gameObject.tag);
-		if (collision.gameObject.tag == "Player")
+		if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Machine")
 		{
-			Debug.Log("Hit to player");
+			Debug.Log("Hit to " + collision.gameObject.name);
+			StealEnergy(collision.gameObject);
 		}
 
 		Destroy(gameObject);
+	}
+
+	void StealEnergy(GameObject target)
+	{
+		Energy energy = target.GetComponent<Energy>();
+
+		energy.Steal(damage, 1);
 	}
 }
