@@ -191,9 +191,9 @@ GameObject:
   - component: {fileID: 114604900588175646}
   - component: {fileID: 54205916423943266}
   - component: {fileID: 114069065250048332}
-  - component: {fileID: 114145728749572948}
+  - component: {fileID: 114644083079037444}
   m_Layer: 9
-  m_Name: Enemy
+  m_Name: MeleeEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -410,17 +410,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ai: {fileID: 114178044686249952}
---- !u!114 &114145728749572948
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1795383024978756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a91a99d902e6324ab7aceac283dc5a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114178044686249952
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -459,7 +448,7 @@ MonoBehaviour:
       type="RAIN.Perception.Sensors.VisualSensor" reference="13"><_showVisual>True</_showVisual><_sensorName>AttackRange</_sensorName><_isActive>True</_isActive><_sensorColor>0,0.6,0.6,1</_sensorColor><_mountPoint
       sceneobject="297822b0-eb17-46f3-9610-7793c82c2600" component="0"></_mountPoint><_positionOffset>0,0,0</_positionOffset><_angleOffset>0,0,0</_angleOffset><_filters></_filters><_range>4</_range><_canDetectSelf>False</_canDetectSelf><_horizontalAngle>360</_horizontalAngle><_verticalAngle>180</_verticalAngle><_lineOfSight>False</_lineOfSight><_lineOfSightMask>-5</_lineOfSightMask></element1></_sensors></_senses><_customElements></_customElements></_ai></component>
     _serializedMetaDocument: <meta><element0><key>/component/_ai+_selected</key><value
-      type="System.Int32">5</value></element0></meta>
+      type="System.Int32">0</value></element0></meta>
     _serializedObjects:
     - {fileID: 4900000, guid: 728712d14af0a304d86aa1afa846da44, type: 3}
     _serializedCustomData: []
@@ -480,6 +469,18 @@ MonoBehaviour:
   CanReceive: 1
   stealCoolDown: 1
   receiveCoolDown: 0
+--- !u!114 &114644083079037444
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1795383024978756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f1c54b3438668a4c8f4596fbfa2dbb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ai: {fileID: 114178044686249952}
 --- !u!136 &136460726439009206
 CapsuleCollider:
   m_ObjectHideFlags: 1
