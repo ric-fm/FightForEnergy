@@ -10,7 +10,9 @@ using System.Collections.Generic;
 using UnityEngine;
 public class MeleeEnemy : Enemy
 {
-	public AIRig ai;
+	public int damage = 1;
+
+	GameObject currentTarget;
 
 	protected override void Start()
 	{
@@ -19,24 +21,35 @@ public class MeleeEnemy : Enemy
 
 	public void Hit()
 	{
-		GameObject target = GetTarget();
+		//GameObject target = GetTarget();
 
-		Debug.Log("Hit on " + target.name);
-	}
+		Debug.Log("Hit on " + currentTarget.name);
 
-	public GameObject GetTarget()
-	{
-		AI ai2 = ai.AI;
-
-		RAINMemory memory = ai2.WorkingMemory;
-
-		object obj = memory.GetItem("attacktarget");
-
-		if (obj != null)
+		if (currentTarget != null)
 		{
-			return (GameObject)obj;
-		}
 
-		return null;
+		}
+		StealEnergy(currentTarget);
 	}
+
+	void StealEnergy(GameObject target)
+	{
+		Energy energy = target.GetComponent<Energy>();
+
+		energy.Steal(damage, 1);
+	}
+
+	private void LateUpdate()
+	{
+		currentTarget = GetTarget();
+		if (currentTarget != null)
+		{
+			transform.LookAt(currentTarget.transform);
+		}
+		else
+		{
+			Debug.Log("no target");
+		}
+	}
+
 }
