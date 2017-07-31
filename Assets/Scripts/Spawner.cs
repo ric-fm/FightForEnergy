@@ -50,6 +50,11 @@ public class Spawner : MonoBehaviour
 		return spawnedEntities.Count < maxEnemies;
 	}
 
+	bool AllEnemiesDestroyed()
+	{
+		return spawnedEntities.Count == 0;
+	}
+
 	bool IsCustomWave()
 	{
 		return currentWave < customWaves.Count;
@@ -86,6 +91,13 @@ public class Spawner : MonoBehaviour
 						yield return new WaitForSeconds(customSpawn.delay);
 					}
 
+					while(!AllEnemiesDestroyed())
+					{
+						Debug.Log("Wait to wave end");
+
+						yield return new WaitForSeconds(waitTimeForCheckMaxEnemies);
+					}
+
 				}
 
 				++currentWave;
@@ -119,6 +131,14 @@ public class Spawner : MonoBehaviour
 				if (waveCompleted)
 				{
 					waveCompleted = false;
+
+					while (!AllEnemiesDestroyed())
+					{
+						Debug.Log("Wait to wave end");
+
+						yield return new WaitForSeconds(waitTimeForCheckMaxEnemies);
+					}
+
 					NextProggresiveWave();
 
 					yield return new WaitForSeconds(progressiveWave.delayBetweenWaves * progressiveWave.delayBetweenWavesMultiplier);
