@@ -119,6 +119,8 @@ GameObject:
   - component: {fileID: 114502604847672512}
   - component: {fileID: 114887685073434240}
   - component: {fileID: 114409997537251118}
+  - component: {fileID: 65732211182902482}
+  - component: {fileID: 54775740599723308}
   m_Layer: 10
   m_Name: Turret machine
   m_TagString: Machine
@@ -301,6 +303,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1342571241917148}
   m_Mesh: {fileID: 4300002, guid: 29ad0613e2738354595a0be1d9b5d2e2, type: 3}
+--- !u!54 &54775740599723308
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1948805390965722}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &65732211182902482
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1948805390965722}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.03, y: 5, z: 7.08}
+  m_Center: {x: 0, y: 2.46, z: 2.19}
 --- !u!95 &95839278651042334
 Animator:
   serializedVersion: 3

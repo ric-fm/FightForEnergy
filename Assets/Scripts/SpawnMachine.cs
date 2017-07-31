@@ -34,6 +34,8 @@ public class SpawnMachine : MonoBehaviour
 			if (machineGhost == null)
 			{
 				machineGhost = GameObject.Instantiate(machineTemplate, spawnPosition, Quaternion.identity);
+
+				machineGhost.GetComponent<Collider>().enabled = false;
 			}
 
 			machineGhost.transform.position = spawnPosition;
@@ -57,6 +59,8 @@ public class SpawnMachine : MonoBehaviour
 
 					}
 					machine.CheckOn();
+					machine.GetComponent<Collider>().enabled = true;
+
 					NotifySpawn(machineGhost);
 					machineGhost = null;
 				}
