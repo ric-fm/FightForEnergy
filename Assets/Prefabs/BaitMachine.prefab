@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb46fc665a0a0d74d919961e0733367f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 10
+  amount: 3
   MaxAmount: 10
   CanSteal: 1
   CanReceive: 1

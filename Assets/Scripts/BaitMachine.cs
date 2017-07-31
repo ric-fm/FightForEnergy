@@ -55,7 +55,7 @@ public class BaitMachine : Machine
 		base.Start();
 	}
 
-	protected virtual void OnEnergyChanged(Energy energy)
+	protected override void OnEnergyChanged(Energy energy)
 	{
 		base.OnEnergyChanged(energy);
 

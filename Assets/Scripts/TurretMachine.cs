@@ -148,4 +148,11 @@ public class TurretMachine : Machine
 			On();
 		}
 	}
+
+	protected override void OnEnergyChanged(Energy energy)
+	{
+		base.OnEnergyChanged(energy);
+
+		CheckOn();
+	}
 }
