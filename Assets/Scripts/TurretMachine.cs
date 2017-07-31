@@ -4,6 +4,7 @@
 
 
 using RAIN.Core;
+using RAIN.Entities;
 using RAIN.Memory;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,23 +29,36 @@ public class TurretMachine : Machine
 
 	public AIRig ai;
 
+	bool isRunning;
+	public EntityRig entity;
+
+	Animator anim;
+
+	protected override void Awake()
+	{
+		base.Awake();
+
+		anim = GetComponent<Animator>();
+	}
 
 	protected override void Start()
 	{
 		base.Start();
-
-		StartCoroutine(CoolDown());
 	}
 
 	void Update()
 	{
-		Aim();
-
-		target = GetTarget();
-
-		if (canShoot && target != null && CannonReady())
+		if (isRunning)
 		{
-			Shoot();
+
+			Aim();
+
+			target = GetTarget();
+
+			if (canShoot && target != null && CannonReady())
+			{
+				Shoot();
+			}
 		}
 	}
 
@@ -54,7 +68,7 @@ public class TurretMachine : Machine
 		{
 			shootDirection = (transform.position - target.transform.position).normalized;
 
-			shootAngle = -Mathf.Atan2(-shootDirection.x, shootDirection.z) * Mathf.Rad2Deg;
+			shootAngle = -Mathf.Atan2(shootDirection.x, -shootDirection.z) * Mathf.Rad2Deg;
 
 			Cannon.transform.localRotation = Quaternion.Lerp(Cannon.transform.localRotation, Quaternion.Euler(-90.0f, 0.0f, shootAngle), turnSpeed * Time.deltaTime);
 		}
@@ -101,5 +115,38 @@ public class TurretMachine : Machine
 		}
 
 		return null;
+	}
+
+
+	public void On()
+	{
+		isRunning = true;
+		entity.enabled = true;
+		anim.SetBool("IsOn", true);
+
+		StartCoroutine(CoolDown());
+
+	}
+
+	public void Off()
+	{
+		isRunning = false;
+		entity.enabled = false;
+
+
+		anim.SetBool("IsOn", true);
+		StopAllCoroutines();
+	}
+
+	public override void CheckOn()
+	{
+		if (!energy.HasEnergy && isRunning)
+		{
+			Off();
+		}
+		else if (energy.HasEnergy && !isRunning)
+		{
+			On();
+		}
 	}
 }

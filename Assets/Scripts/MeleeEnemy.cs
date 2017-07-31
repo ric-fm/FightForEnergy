@@ -46,10 +46,6 @@ public class MeleeEnemy : Enemy
 		{
 			transform.LookAt(currentTarget.transform);
 		}
-		else
-		{
-			Debug.Log("no target");
-		}
 	}
 
 }

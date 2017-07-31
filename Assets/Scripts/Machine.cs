@@ -8,18 +8,23 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Machine : MonoBehaviour
 {
-	Energy energy;
+	protected Energy energy;
 
 	public delegate void MachineEvent(Machine machine);
 
 	public event MachineEvent OnMachineEnergyFilled;
 
-	protected virtual void Start () {
+
+	protected virtual void Awake()
+	{
 		energy = GetComponent<Energy>();
+		
+	}
+	protected virtual void Start () {
 		energy.OnEnergyChanged += OnEnergyChanged;
 	}
 
-	void OnEnergyChanged(Energy energy)
+	protected virtual void OnEnergyChanged(Energy energy)
 	{
 		Debug.Log("Machine( " + gameObject.name + ") energy " + energy.Amount);
 
@@ -28,6 +33,11 @@ public class Machine : MonoBehaviour
 			Debug.Log("Machine(" + gameObject.name + ") filled");
 			NotifyEnergyFilled();
 		}
+	}
+
+	public virtual void CheckOn()
+	{
+
 	}
 
 	void NotifyEnergyFilled()

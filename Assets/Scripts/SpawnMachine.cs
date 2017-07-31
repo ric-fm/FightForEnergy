@@ -43,8 +43,21 @@ public class SpawnMachine : MonoBehaviour
 				if (CanSpawnMachineOnPosition())
 				{
 					GameObject newMachine = GameObject.Instantiate(machineTemplate, spawnPosition, Quaternion.identity);
+					Destroy(machineGhost);
 					machineGhost = null;
 
+
+					Machine machine = newMachine.GetComponent<Machine>();
+					if(machine == null)
+					{
+						Debug.Log("machine null");
+					}
+					else
+					{
+						Debug.Log("machine ok");
+
+					}
+					machine.CheckOn();
 					NotifySpawn(newMachine);
 				}
 			}

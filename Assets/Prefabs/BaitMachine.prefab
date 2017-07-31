@@ -27,7 +27,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1494541232704424
 GameObject:
   m_ObjectHideFlags: 0
@@ -38,9 +38,9 @@ GameObject:
   - component: {fileID: 4803243196198140}
   - component: {fileID: 95757134884974812}
   - component: {fileID: 114915958767994480}
-  - component: {fileID: 114120997997865806}
   - component: {fileID: 65839195991765466}
   - component: {fileID: 54514160717320732}
+  - component: {fileID: 114134020391244084}
   m_Layer: 10
   m_Name: BaitMachine
   m_TagString: Machine
@@ -320,7 +320,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114120997997865806
+--- !u!114 &114134020391244084
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -328,16 +328,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1494541232704424}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 207bb81bf31b4f9449488edafa85e498, type: 3}
+  m_Script: {fileID: 11500000, guid: 07286ad06bcad704fb82608cb3192411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particles: {fileID: 1213427419766778}
+  entity: {fileID: 0}
 --- !u!114 &114606902364659102
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1936931892694452}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 220721487, guid: 9fa2ecd1ff2ad394281dd3bf72c5b76e, type: 3}
   m_Name: 
@@ -448,7 +450,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -785756539
+  randomSeed: 1526495244
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3614,7 +3616,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -1655768847
+  randomSeed: -1863194871
   InitialModule:
     serializedVersion: 3
     enabled: 1

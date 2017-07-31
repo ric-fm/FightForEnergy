@@ -43,9 +43,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1552804738438596
+--- !u!1 &1541729916124172
 GameObject:
   m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4020241296463442}
+  m_Layer: 10
+  m_Name: CannonPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1552804738438596
+GameObject:
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -111,32 +126,46 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4020241296463442
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1541729916124172}
+  m_LocalRotation: {x: 0.1728746, y: 0, z: 0, w: 0.9849439}
+  m_LocalPosition: {x: 0, y: 0.92, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4359811765987488}
+  m_Father: {fileID: 4203124393188526}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 19.91, y: 0, z: 0}
 --- !u!4 &4203124393188526
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1948805390965722}
-  m_LocalRotation: {x: -0, y: -0.99432814, z: -0, w: -0.10635564}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -5.206215, y: 0.05087328, z: 24.558943}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
-  - {fileID: 4359811765987488}
+  - {fileID: 4020241296463442}
   - {fileID: 4543857414105032}
   - {fileID: 4766219631839462}
   - {fileID: 4284477843595558}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -192.211, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4284477843595558
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1659392932075626}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.000000014901158, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 0.6666667}
+  m_LocalScale: {x: 0.6666686, y: 0.6666672, z: 0.6666691}
   m_Children: []
   m_Father: {fileID: 4203124393188526}
   m_RootOrder: 3
@@ -147,14 +176,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1552804738438596}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4880257648349718}
-  m_Father: {fileID: 4203124393188526}
+  m_Father: {fileID: 4020241296463442}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &4543857414105032
 Transform:
   m_ObjectHideFlags: 1
@@ -281,7 +310,7 @@ Animator:
   m_GameObject: {fileID: 1948805390965722}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 29ad0613e2738354595a0be1d9b5d2e2, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b7fa4035cf044a349aa6db31b5f8d247, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -376,7 +405,7 @@ MonoBehaviour:
       : \"0,0,0\",\n                        \"_angleOffset\"    : \"0,0,0\",\n                        \"_filters\"
       \       : {\n                        },\n                        \"_range\"
       \         : \"50\",\n                        \"_canDetectSelf\"  : \"False\",\n
-      \                       \"_horizontalAngle\" : \"148\",\n                        \"_verticalAngle\"
+      \                       \"_horizontalAngle\" : \"360\",\n                        \"_verticalAngle\"
       \  : \"180\",\n                        \"_lineOfSight\"     : \"False\",\n                        \"_lineOfSightMask\"
       : \"-5\"\n                    }\n                }\n            },\n            \"_customElements\"
       : {\n            }\n        }\n    }\n}"
@@ -391,7 +420,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1708475379834350}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 220721487, guid: 9fa2ecd1ff2ad394281dd3bf72c5b76e, type: 3}
   m_Name: 
@@ -444,10 +473,11 @@ MonoBehaviour:
   shootPoint: {fileID: 4880257648349718}
   shootSpeed: 500
   turnSpeed: 2
-  coolDownInterval: 1
+  coolDownInterval: 3
   missileTemplate: {fileID: 1235031061803072, guid: 8b82c1728411deb4d98d1f72b6c9ed51,
     type: 2}
   ai: {fileID: 114126935049928236}
+  entity: {fileID: 114335332291703434}
 --- !u!114 &114887685073434240
 MonoBehaviour:
   m_ObjectHideFlags: 1
