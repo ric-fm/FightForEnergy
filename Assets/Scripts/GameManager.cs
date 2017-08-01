@@ -43,9 +43,9 @@ public class GameManager : MonoBehaviour
 			timer += Time.deltaTime;
 		}
 
-		if(Input.GetKeyDown(KeyCode.R))
+		if(Input.GetKeyDown(KeyCode.Escape))
 		{
-			GameOver();
+			Application.Quit();
 		}
 	}
 
@@ -154,7 +154,8 @@ public class GameManager : MonoBehaviour
 	public void Restart()
 	{
 		Time.timeScale = 1.0f;
-		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		//SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		SceneManager.LoadScene("mainmenu_scene");
 	}
 
 }

@@ -204,10 +204,10 @@ public class PlayerController : MonoBehaviour
 		float vAxis = Input.GetAxis("Vertical");
 		//bool shootButton = Input.GetButtonDown("Fire1");
 
-		if (Input.GetKeyDown(KeyCode.E))
-		{
-			CurrentState = PlayerState.SPAWNING;
-		}
+		//if (Input.GetKeyDown(KeyCode.E))
+		//{
+		//	CurrentState = PlayerState.SPAWNING;
+		//}
 
 		Move(hAxis, vAxis);
 
