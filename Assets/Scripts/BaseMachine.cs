@@ -8,8 +8,8 @@ using System.Collections.Generic;
 using UnityEngine;
 public class BaseMachine : Machine
 {
-	//public List<GameObject> UIS;
-	public GameObject UIS;
+	public List<BaseMachineUI> UIS;
+	//public GameObject UIS;
 
 	bool playerIn = false;
 
@@ -62,21 +62,21 @@ public class BaseMachine : Machine
 
 	void ShowUI()
 	{
-		UIS.SetActive(true);
-		//foreach (GameObject ui in UIS)
-		//{
-		//	ui.SetActive(true);
-		//}
+		//UIS.SetActive(true);
+		foreach (BaseMachineUI ui in UIS)
+		{
+			ui.Show();
+		}
 	}
 
 	void HideUI()
 	{
-		UIS.SetActive(false);
+		//UIS.SetActive(false);
 
-		//foreach (GameObject ui in UIS)
-		//{
-		//	ui.SetActive(false);
-		//}
+		foreach (BaseMachineUI ui in UIS)
+		{
+			ui.Hide();
+		}
 	}
 
 	private void Update()

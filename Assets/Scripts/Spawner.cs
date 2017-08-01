@@ -70,7 +70,9 @@ public class Spawner : MonoBehaviour
 
 		while (true)
 		{
-			if (IsCustomWave())
+
+			//if (IsCustomWave())
+			if (false)
 				{
 				//Debug.Log("Custom spawn");
 				CustomWave customWave = customWaves[currentWave];
@@ -112,6 +114,8 @@ public class Spawner : MonoBehaviour
 			{
 				while (!CanSpawn())
 				{
+					Debug.Log("Wait to max enemies");
+
 					yield return new WaitForSeconds(waitTimeForCheckMaxEnemies);
 				}
 				//Debug.Log("Progresive spawn");
@@ -136,6 +140,8 @@ public class Spawner : MonoBehaviour
 
 				if (waveCompleted)
 				{
+					Debug.Log("proggresive wave completed");
+
 					waveCompleted = false;
 
 					while (!AllEnemiesDestroyed())
@@ -147,7 +153,7 @@ public class Spawner : MonoBehaviour
 
 					NextProggresiveWave();
 
-					yield return new WaitForSeconds(progressiveWave.delayBetweenWaves * progressiveWave.delayBetweenWavesMultiplier);
+					yield return new WaitForSeconds(progressiveWave.delayBetweenWaves /** progressiveWave.delayBetweenWavesMultiplier*/);
 				}
 				else
 				{
@@ -167,12 +173,16 @@ public class Spawner : MonoBehaviour
 
 	void NextProggresiveWave()
 	{
+		Debug.Log("Next proggresive wave");
 		++currentWave;
 		progressiveWave.UpdateDifficulty();
+		progressiveWave.RestartWave();
+		progressiveWave.OrderProbabilities();
+
 	}
 
 
-	
+
 
 	void Spawn(SpawnStats spawnStat, Vector3 position)
 	{

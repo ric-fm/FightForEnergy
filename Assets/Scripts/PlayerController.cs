@@ -387,7 +387,7 @@ public class PlayerController : MonoBehaviour
 			{
 				int sentEnergy = targetHitEnergy.Receive((int)CurrentStats.ChargeMultiplier);
 
-				energy.Amount -= sentEnergy;
+				energy.Amount -= sentEnergy / (int)CurrentStats.ChargeMultiplier;
 			}
 			else
 			{

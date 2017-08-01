@@ -47,6 +47,13 @@ public class ProgressiveWaves
 	public float delayBetweenWavesIncrement = 0;
 	public float maxDelayBetweenWaves = 1;
 
+	public void RestartWave()
+	{
+		foreach(SpawnStats spawnStat in spawnStats)
+		{
+			spawnStat.spawnedEntities.Clear();
+		}
+	}
 
 	public SpawnStats GetSpawnStats(float randValue)
 	{

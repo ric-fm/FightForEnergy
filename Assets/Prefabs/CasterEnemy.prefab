@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 114084252919356070}
   - component: {fileID: 114950135090708882}
   - component: {fileID: 114092695606453254}
+  - component: {fileID: 114418459858604520}
   m_Layer: 9
   m_Name: CasterEnemy
   m_TagString: Enemy
@@ -533,6 +534,18 @@ MonoBehaviour:
     _serializedObjects:
     - {fileID: 4900000, guid: a2932ad7fce0dd843827aeb215a7d704, type: 3}
     _serializedCustomData: []
+--- !u!114 &114418459858604520
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1276574792946372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ca47611d709ec49bb04159482a78c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 114811215204191506}
 --- !u!114 &114811215204191506
 MonoBehaviour:
   m_ObjectHideFlags: 1

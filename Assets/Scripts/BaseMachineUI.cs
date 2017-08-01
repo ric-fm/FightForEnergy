@@ -68,7 +68,7 @@ public class BaseMachineUI : MonoBehaviour
 	{
 		playerController = FindObjectOfType<PlayerController>();
 
-		if(IsUnique)
+		if (IsUnique)
 		{
 			CurrentStats = UniqueStat;
 		}
@@ -85,11 +85,11 @@ public class BaseMachineUI : MonoBehaviour
 			Debug.Log("Upgrade " + type.ToString());
 			playerController.UpgradeStat(type, CurrentStats.Value, CurrentStats.Cost);
 			float delay = CurrentStats.CoolDownInterval;
-			if(!IsUnique)
+			if (!IsUnique)
 			{
 				CheckValue();
 			}
-				
+
 			StartCoroutine(CoolDown(delay));
 		}
 		else
@@ -101,7 +101,7 @@ public class BaseMachineUI : MonoBehaviour
 	void CheckValue()
 	{
 		++currentStatsIndex;
-		if(currentStatsIndex >= Stats.Count)
+		if (currentStatsIndex >= Stats.Count)
 		{
 			Destroy(gameObject);
 		}
@@ -111,26 +111,32 @@ public class BaseMachineUI : MonoBehaviour
 		}
 	}
 
-	void Show()
+	public void Show()
 	{
-		mRenderer.enabled = true;
-		coll.enabled = true;
+		if (!cool)
+		{
+			mRenderer.enabled = true;
+			coll.enabled = true;
+		}
 	}
 
-	void Hide()
+	public void Hide()
 	{
 		mRenderer.enabled = false;
 		coll.enabled = false;
 	}
 
+	bool cool = false;
+
 	IEnumerator CoolDown(float interval)
 	{
 		canUpgrade = false;
-
+		cool = true;
 		Hide();
 
 		yield return new WaitForSeconds(interval);
 		canUpgrade = true;
+		cool = false;
 		Show();
 
 	}

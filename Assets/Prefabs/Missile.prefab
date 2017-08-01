@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114221028432048598}
   - component: {fileID: 54440391461842676}
   - component: {fileID: 135743922695803110}
+  - component: {fileID: 114144297993284392}
   m_Layer: 16
   m_Name: Missile
   m_TagString: Untagged
@@ -116,6 +117,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114144297993284392
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1235031061803072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c0b6cd3cc508ca4b95f6be0cec4c35c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 20
 --- !u!114 &114221028432048598
 MonoBehaviour:
   m_ObjectHideFlags: 1
